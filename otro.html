@@ -640,15 +640,18 @@ function updateCD() {
     document.querySelectorAll('.cd-sep').forEach(el => el.style.color = '#5c1a28');
     document.getElementById('cd-sub').textContent = '¡Ya falta muy poco!';
   }
-}
-updateCD(); setInterval(updateCD, 1000);
-
-// MÚSICA
 let musicPlaying = false;
 function startMusic() {
   const audio = document.getElementById('bg-music');
-  audio.volume = 0.35;
+  audio.currentTime = 30;
+  audio.volume = 0;
   audio.play().then(() => {
+    let vol = 0;
+    const fade = setInterval(() => {
+      vol = Math.min(vol + 0.02, 0.45);
+      audio.volume = vol;
+      if (vol >= 0.45) clearInterval(fade);
+    }, 100);
     musicPlaying = true;
     document.getElementById('icon-play').style.display = 'none';
     document.getElementById('icon-pause').style.display = 'block';
