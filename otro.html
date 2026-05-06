@@ -175,39 +175,7 @@ body { background: var(--dark); font-family: 'Jost', sans-serif; overflow-x: hid
 .card-bottom { padding: 18px 28px 0; text-align: center; }
 .card-bottom-text { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 12px; color: rgba(240,232,220,0.28); letter-spacing: 2px; }
 
-/* MUSIC BUTTON */
-.music-btn {
-  position: fixed;
-  bottom: 24px; right: 20px;
-  z-index: 4000;
-  width: 44px; height: 44px;
-  border-radius: 50%;
-  background: rgba(26,15,10,0.9);
-  border: 1px solid var(--gold);
-  display: flex; align-items: center; justify-content: center;
-  cursor: pointer;
-  opacity: 0;
-  transition: opacity 0.5s ease, background 0.3s ease;
-  backdrop-filter: blur(8px);
-}
-.music-btn.visible { opacity: 1; }
-.music-btn:hover { background: var(--gold); }
-.music-btn:hover .icon-play path, .music-btn:hover .icon-pause rect { fill: var(--dark); }
-
-/* POST RSVP MESSAGE */
-#rsvp-message {
-  font-family: 'Cormorant Garamond', serif;
-  font-style: italic;
-  font-size: 20px;
-  color: var(--burg);
-  text-align: center;
-  margin-top: 16px;
-  min-height: 28px;
-  opacity: 0;
-  transform: translateY(8px);
-  transition: all 0.7s ease;
-}
-#rsvp-message.show { opacity: 1; transform: translateY(0); }
+/* CONFETTI */
 .confetti-piece { position: fixed; pointer-events: none; z-index: 8000; animation: confetti-fall 2s ease forwards; }
 @keyframes confetti-fall { 0% { transform: translateY(var(--sy)) translateX(0) rotate(0deg); opacity: 1; } 100% { transform: translateY(100vh) translateX(var(--sx)) rotate(720deg); opacity: 0; } }
 
@@ -396,9 +364,12 @@ body { background: var(--dark); font-family: 'Jost', sans-serif; overflow-x: hid
       <span class="section-label">La invitación</span>
       <p class="invitation-text">
         Amor,<br><br>
-        Este sábado tienes una cena reservada.<br>
-        Ponte hermosa. Yo paso por ti.<br><br>
-        <strong>29 años</strong> merecen una celebración especial.
+        Tienes una cena reservada este sábado.<br>
+        No sé si soy muy bueno con las palabras,<br>
+        pero sé que quiero pasar cada momento especial<br>
+        contigo, y este <strong>cumpleaños</strong> no podía ser diferente.<br><br>
+        Solo tienes que <strong>brillar</strong> —<br>
+        que de eso, tú no necesitas ayuda.
       </p>
 
       <div class="card-divider">
@@ -520,7 +491,6 @@ body { background: var(--dark); font-family: 'Jost', sans-serif; overflow-x: hid
       <button class="rsvp-btn" id="rsvp-btn" onclick="confirmRSVP()">
         <span id="rsvp-text">ALLÁ ESTARÉ ♥</span>
       </button>
-      <div id="rsvp-message"></div>
     </div>
 
     <!-- QUOTE -->
@@ -539,22 +509,6 @@ body { background: var(--dark); font-family: 'Jost', sans-serif; overflow-x: hid
   <div class="card-bottom reveal r6">
     <div class="card-bottom-text">Feliz cumpleaños, Laura &nbsp;✦&nbsp; 29 años de ser extraordinaria</div>
   </div>
-</div>
-
-<!-- AUDIO -->
-<audio id="bg-music" loop>
-  <source src="cancioncena.mp3" type="audio/mpeg">
-</audio>
-
-<!-- MUSIC BUTTON -->
-<div class="music-btn" id="music-btn" onclick="toggleMusic()">
-  <svg class="icon-play" id="icon-play" width="18" height="18" viewBox="0 0 18 18" fill="none">
-    <path d="M6 5 L6 13 L14 9 Z" fill="#b8945a"/>
-  </svg>
-  <svg class="icon-pause" id="icon-pause" width="18" height="18" viewBox="0 0 18 18" fill="none" style="display:none">
-    <rect x="5" y="4" width="3" height="10" rx="1" fill="#b8945a"/>
-    <rect x="10" y="4" width="3" height="10" rx="1" fill="#b8945a"/>
-  </svg>
 </div>
 
 <script>
@@ -601,13 +555,10 @@ function openEnvelope() {
       envScreen.style.display = 'none';
       const card = document.getElementById('card');
       card.style.display = 'block';
-      document.getElementById('music-btn').classList.add('visible');
       window.scrollTo(0, 0);
       requestAnimationFrame(() => requestAnimationFrame(() => {
         card.classList.add('show');
         observeReveal();
-        // Arrancar música al abrir el sobre
-        startMusic();
       }));
     }, 750);
   }, 950);
@@ -622,60 +573,20 @@ function observeReveal() {
   els.forEach((el, i) => { if (i >= 5) io.observe(el); });
 }
 
-// Countdown — turns burgundy under 24h
+// Countdown
 function updateCD() {
   const diff = new Date('2026-05-09T16:00:00') - new Date();
-  if (diff <= 0) {
-    ['d','h','m','s'].forEach(id => document.getElementById('cd-'+id).textContent = '00');
-    document.getElementById('cd-sub').textContent = '¡Es hoy, amor!';
-    return;
-  }
+  if (diff <= 0) { ['d','h','m','s'].forEach(id => document.getElementById('cd-'+id).textContent = '00'); document.getElementById('cd-sub').textContent = '¡Es hoy, amor!'; return; }
   document.getElementById('cd-d').textContent = String(Math.floor(diff/86400000)).padStart(2,'0');
   document.getElementById('cd-h').textContent = String(Math.floor((diff%86400000)/3600000)).padStart(2,'0');
   document.getElementById('cd-m').textContent = String(Math.floor((diff%3600000)/60000)).padStart(2,'0');
   document.getElementById('cd-s').textContent = String(Math.floor((diff%60000)/1000)).padStart(2,'0');
-  // Turn burgundy when less than 24h
-  if (diff < 86400000) {
-    document.querySelectorAll('.cd-num').forEach(el => el.style.color = '#5c1a28');
-    document.querySelectorAll('.cd-sep').forEach(el => el.style.color = '#5c1a28');
-    document.getElementById('cd-sub').textContent = '¡Ya falta muy poco!';
-  }
-let musicPlaying = false;
-function startMusic() {
-  const audio = document.getElementById('bg-music');
-  audio.currentTime = 30;
-  audio.volume = 0;
-  audio.play().then(() => {
-    let vol = 0;
-    const fade = setInterval(() => {
-      vol = Math.min(vol + 0.02, 0.45);
-      audio.volume = vol;
-      if (vol >= 0.45) clearInterval(fade);
-    }, 100);
-    musicPlaying = true;
-    document.getElementById('icon-play').style.display = 'none';
-    document.getElementById('icon-pause').style.display = 'block';
-  }).catch(() => {});
 }
-function toggleMusic() {
-  const audio = document.getElementById('bg-music');
-  if (musicPlaying) {
-    audio.pause();
-    musicPlaying = false;
-    document.getElementById('icon-play').style.display = 'block';
-    document.getElementById('icon-pause').style.display = 'none';
-  } else {
-    audio.play().then(() => {
-      musicPlaying = true;
-      document.getElementById('icon-play').style.display = 'none';
-      document.getElementById('icon-pause').style.display = 'block';
-    }).catch(() => {});
-  }
-}
+updateCD(); setInterval(updateCD, 1000);
 
 // ICS
 function downloadICS() {
-  const ics = `BEGIN:VCALENDAR\nVERSION:2.0\nPRODID:-//Cena Laura//ES\nBEGIN:VEVENT\nDTSTART:20260509T160000\nDTEND:20260509T200000\nSUMMARY:Una velada para los dos ✨🥂\nDESCRIPTION:Una velada para los dos. Te amo mi amor ❤️\nLOCATION:Reservado\nBEGIN:VALARM\nTRIGGER:-PT2H\nACTION:DISPLAY\nDESCRIPTION:Tu cena especial empieza en 2 horas 🌹\nEND:VALARM\nEND:VEVENT\nEND:VCALENDAR`;
+  const ics = `BEGIN:VCALENDAR\nVERSION:2.0\nPRODID:-//Cena Laura//ES\nBEGIN:VEVENT\nDTSTART:20260509T160000\nDTEND:20260509T210000\nSUMMARY:Una velada para los dos\nDESCRIPTION:Una velada para los dos. Te amo mi amor ❤️\nLOCATION:Reservado\nEND:VEVENT\nEND:VCALENDAR`;
   const blob = new Blob([ics], {type: 'text/calendar;charset=utf-8'});
   const url = URL.createObjectURL(blob);
   const a = document.createElement('a'); a.href = url; a.download = 'cena-especial-laura.ics';
@@ -715,11 +626,6 @@ function confirmRSVP() {
   if (rsvpDone) return; rsvpDone = true;
   const btn = document.getElementById('rsvp-btn'); btn.classList.add('confirmed');
   document.getElementById('rsvp-text').textContent = '¡Allá estaré! ♥';
-  const msg = document.getElementById('rsvp-message');
-  setTimeout(() => {
-    msg.textContent = 'Te espero con todo. Te amo.';
-    msg.classList.add('show');
-  }, 600);
   launchConfetti(false);
 }
 
