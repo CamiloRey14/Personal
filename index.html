@@ -676,19 +676,18 @@ function mirandaReply() {
   startMusic();
 }
 
-// MÚSICA
 let musicPlaying = false;
 function startMusic() {
   const audio = document.getElementById('bg-music');
-  audio.currentTime = 30;  // empieza en el segundo 30
+  audio.currentTime = 30;
   audio.volume = 0;
-audio.play();
-let vol = 0;
-const fade = setInterval(() => {
-  vol = Math.min(vol + 0.02, 0.5); // sube hasta 0.45 (45%)
-  audio.volume = vol;
-  if (vol >= 0.45) clearInterval(fade);
-}, 100); // cada 100ms sube un poco
+  audio.play().then(() => {
+    let vol = 0;
+    const fade = setInterval(() => {
+      vol = Math.min(vol + 0.02, 0.45);
+      audio.volume = vol;
+      if (vol >= 0.45) clearInterval(fade);
+    }, 100);
     musicPlaying = true;
     document.getElementById('icon-play').style.display = 'none';
     document.getElementById('icon-pause').style.display = 'block';
