@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RUNWAY — The Devil Wears Prada 2</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,900&family=Didact+Gothic&family=Cormorant+Garamond:ital,wght@0,300;1,300;1,400&family=Bebas+Neue&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+:root {
+  --black: #080808;
+  --white: #f7f4ef;
+  --gold: #c8a96e;
+  --gold-dim: rgba(200,169,110,0.28);
+  --red: #9b1c1c;
+  --grey: #a8a49e;
+  --mid: #1e1e1e;
+}
+html { scroll-behavior: smooth; }
+body { background: var(--black); color: var(--white); font-family: 'Didact Gothic', sans-serif; overflow-x: hidden; cursor: none; }
+
+/* CURSOR */
+#cur { position: fixed; pointer-events: none; z-index: 9999; mix-blend-mode: difference; }
+
+/* INTRO */
+#intro { position: fixed; inset: 0; background: var(--black); z-index: 5000; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+.intro-logo { font-family: 'Bebas Neue', sans-serif; font-size: clamp(70px, 20vw, 120px); letter-spacing: 20px; color: var(--white); overflow: hidden; line-height: 1; display: flex; }
+.intro-logo span { display: inline-block; transform: translateY(110%); animation: introRise 1s cubic-bezier(0.16,1,0.3,1) forwards; }
+.intro-logo span:nth-child(1){animation-delay:0.1s}.intro-logo span:nth-child(2){animation-delay:0.2s}.intro-logo span:nth-child(3){animation-delay:0.3s}.intro-logo span:nth-child(4){animation-delay:0.4s}.intro-logo span:nth-child(5){animation-delay:0.5s}.intro-logo span:nth-child(6){animation-delay:0.6s}
+.intro-line { width: 0; height: 1px; background: var(--gold); animation: lineGrow 0.8s ease forwards 1s; margin: 14px 0 18px; }
+.intro-sub { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 15px; letter-spacing: 6px; color: var(--gold); opacity: 0; animation: fadeIn 0.8s ease forwards 1.2s; }
+@keyframes introRise { to { transform: translateY(0); } }
+@keyframes fadeIn { to { opacity: 1; } }
+@keyframes lineGrow { to { width: 130px; } }
+#intro.hide { animation: introFade 0.9s ease forwards; }
+@keyframes introFade { to { opacity: 0; pointer-events: none; } }
+
+/* PAGE */
+#page { max-width: 500px; margin: 0 auto; opacity: 0; transition: opacity 0.8s ease; padding-bottom: 80px; }
+#page.visible { opacity: 1; }
+
+/* MASTHEAD */
+.masthead { padding: 26px 28px 18px; display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; gap: 12px; border-bottom: 1px solid var(--mid); }
+.mast-left { font-family: 'Bebas Neue', sans-serif; font-size: 11px; letter-spacing: 4px; color: var(--grey); line-height: 1.6; }
+.mast-logo { font-family: 'Bebas Neue', sans-serif; font-size: 42px; letter-spacing: 10px; color: var(--white); text-align: center; line-height: 1; }
+.mast-right { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 12px; letter-spacing: 2px; color: var(--grey); text-align: right; line-height: 1.6; }
+.mast-tagline { grid-column: 1/-1; text-align: center; font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 13px; color: var(--gold); letter-spacing: 3px; padding-top: 4px; }
+
+/* TICKER */
+.ticker-wrap { background: var(--red); padding: 9px 0; overflow: hidden; white-space: nowrap; }
+.ticker-inner { display: inline-block; animation: ticker 24s linear infinite; }
+.ticker-inner span { font-family: 'Bebas Neue', sans-serif; font-size: 11px; letter-spacing: 6px; color: var(--white); padding: 0 32px; }
+@keyframes ticker { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+/* COVER */
+.cover { position: relative; padding: 50px 28px 44px; overflow: hidden; }
+.cover::before { content: ''; position: absolute; inset: 0; background-image: repeating-linear-gradient(-45deg, transparent, transparent 28px, rgba(200,169,110,0.04) 28px, rgba(200,169,110,0.04) 29px); pointer-events: none; }
+
+/* Fashion icons top-right */
+.fashion-icons { position: absolute; right: 18px; top: 24px; display: flex; flex-direction: column; align-items: flex-end; gap: 14px; opacity: 0.2; pointer-events: none; }
+
+.cover-vol { font-family: 'Bebas Neue', sans-serif; font-size: 11px; letter-spacing: 6px; color: var(--red); margin-bottom: 22px; }
+.cover-headline-pre { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 17px; color: var(--grey); letter-spacing: 2px; display: block; margin-bottom: 6px; }
+.cover-name { font-family: 'Playfair Display', serif; font-weight: 900; font-size: clamp(72px, 17vw, 90px); line-height: 0.9; letter-spacing: -2px; margin-bottom: 10px; }
+.cover-name .line2 { font-style: italic; color: var(--gold); display: block; }
+.cover-strapline { font-family: 'Didact Gothic', sans-serif; font-size: 11px; letter-spacing: 5px; color: var(--grey); text-transform: uppercase; margin-top: 22px; }
+.cover-edition { display: inline-block; background: var(--red); color: var(--white); font-family: 'Bebas Neue', sans-serif; font-size: 12px; letter-spacing: 3px; padding: 5px 14px; margin-top: 16px; }
+
+/* TAGLINE BLOCK */
+.tagline-block { margin: 0 28px; padding: 20px 24px; border: 1px solid rgba(155, 28, 28, 0.4); background: rgba(155, 28, 28, 0.06); }
+.tagline-quote { font-family: 'Playfair Display', serif; font-style: italic; font-size: 17px; color: var(--grey); letter-spacing: 1px; }
+.tagline-source { font-family: 'Bebas Neue', sans-serif; font-size: 9px; letter-spacing: 4px; color: var(--red); margin-top: 8px; }
+
+/* DIVIDERS */
+.full-bleed { width: 100%; height: 1px; background: linear-gradient(to right, transparent 0%, var(--gold) 30%, var(--gold) 70%, transparent 100%); margin: 4px 0; }
+.section-bar { display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; padding: 12px 28px; gap: 16px; }
+.sb-line { height: 1px; background: var(--mid); }
+.sb-center { font-family: 'Bebas Neue', sans-serif; font-size: 9px; letter-spacing: 5px; color: var(--gold); white-space: nowrap; }
+
+/* CLAPPER SECTION */
+.clapper-section { padding: 36px 28px; display: grid; grid-template-columns: auto 1fr; gap: 28px; align-items: center; }
+.clapper-label { font-family: 'Bebas Neue', sans-serif; font-size: 10px; letter-spacing: 5px; color: var(--red); margin-bottom: 8px; }
+.clapper-title { font-family: 'Playfair Display', serif; font-size: 22px; font-style: italic; line-height: 1.3; margin-bottom: 4px; }
+.clapper-subtitle { font-family: 'Cormorant Garamond', serif; font-size: 13px; color: var(--grey); font-style: italic; margin-bottom: 16px; }
+.clapper-meta { display: flex; flex-direction: column; gap: 8px; }
+.meta-row { display: flex; align-items: center; gap: 12px; }
+.meta-text { font-family: 'Cormorant Garamond', serif; font-size: 17px; color: var(--grey); }
+.meta-text strong { color: var(--white); font-weight: 400; }
+
+/* CAST STRIP */
+.cast-strip { background: var(--mid); padding: 18px 28px; }
+.cast-label { font-family: 'Bebas Neue', sans-serif; font-size: 9px; letter-spacing: 5px; color: var(--gold); margin-bottom: 12px; }
+.cast-row { display: flex; gap: 8px; flex-wrap: wrap; }
+.cast-pill { font-family: 'Cormorant Garamond', serif; font-size: 13px; font-style: italic; color: var(--grey); border: 1px solid rgba(168,164,158,0.2); padding: 4px 10px; }
+.cast-pill strong { color: var(--white); font-style: normal; font-weight: 400; }
+
+/* MESSAGE */
+.message-section { padding: 36px 28px 36px; }
+.msg-rule { width: 36px; height: 2px; background: var(--red); margin-bottom: 22px; }
+.msg-label { font-family: 'Bebas Neue', sans-serif; font-size: 10px; letter-spacing: 5px; color: var(--gold); margin-bottom: 16px; }
+.msg-text { font-family: 'Cormorant Garamond', serif; font-size: 21px; font-style: italic; line-height: 1.85; color: rgba(247,244,239,0.85); }
+.msg-text strong { font-style: normal; color: var(--white); font-weight: 400; }
+
+/* DETAILS STRIP */
+.details-strip { background: var(--mid); padding: 0 28px; }
+.detail-item { display: flex; justify-content: space-between; align-items: center; padding: 18px 0; border-bottom: 1px solid rgba(255,255,255,0.06); }
+.detail-item:last-child { border-bottom: none; }
+.di-label { font-family: 'Bebas Neue', sans-serif; font-size: 11px; letter-spacing: 4px; color: var(--grey); }
+.di-val { font-family: 'Playfair Display', serif; font-size: 17px; text-align: right; line-height: 1.4; }
+
+/* MIRANDA QUOTE */
+.miranda-section { padding: 40px 28px; position: relative; }
+.miranda-section::before { content: '"'; position: absolute; top: 16px; left: 18px; font-family: 'Playfair Display', serif; font-size: 130px; color: var(--gold-dim); line-height: 1; pointer-events: none; }
+.miranda-quote { font-family: 'Playfair Display', serif; font-style: italic; font-size: 24px; line-height: 1.55; padding-left: 10px; margin-bottom: 18px; position: relative; z-index: 1; }
+.miranda-attr { font-family: 'Bebas Neue', sans-serif; font-size: 10px; letter-spacing: 5px; color: var(--gold); padding-left: 10px; }
+
+/* CTA */
+.cta-section { padding: 8px 28px 44px; display: flex; flex-direction: column; align-items: center; gap: 18px; }
+.cta-btn { width: 100%; background: transparent; border: 1px solid var(--gold); color: var(--gold); font-family: 'Bebas Neue', sans-serif; font-size: 14px; letter-spacing: 6px; padding: 20px 32px; cursor: pointer; position: relative; overflow: hidden; transition: color 0.4s ease; }
+.cta-btn::before { content: ''; position: absolute; inset: 0; background: var(--gold); transform: scaleX(0); transform-origin: left; transition: transform 0.4s cubic-bezier(0.16,1,0.3,1); z-index: 0; }
+.cta-btn:hover::before, .cta-btn.active::before { transform: scaleX(1); }
+.cta-btn:hover, .cta-btn.active { color: var(--black); }
+.cta-btn span { position: relative; z-index: 1; }
+#miranda-response { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 22px; color: var(--white); text-align: center; opacity: 0; transform: translateY(8px); transition: all 0.6s ease; min-height: 60px; display: flex; align-items: center; justify-content: center; }
+#miranda-response.show { opacity: 1; transform: translateY(0); }
+
+/* FOOTER */
+.footer { padding: 24px 28px; border-top: 1px solid var(--mid); display: flex; justify-content: space-between; }
+.footer-col { font-family: 'Bebas Neue', sans-serif; font-size: 9px; letter-spacing: 3px; color: rgba(168,164,158,0.4); line-height: 1.7; }
+
+/* REVEAL */
+.reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.7s ease, transform 0.7s ease; }
+.reveal.in { opacity: 1; transform: translateY(0); }
+.reveal:nth-child(1){transition-delay:0.05s}.reveal:nth-child(2){transition-delay:0.1s}.reveal:nth-child(3){transition-delay:0.15s}.reveal:nth-child(4){transition-delay:0.2s}.reveal:nth-child(5){transition-delay:0.25s}
+
+/* SPARKLE */
+.spark { position: fixed; pointer-events: none; z-index: 9000; width: 3px; height: 3px; background: var(--gold); border-radius: 50%; animation: sparkfly 0.8s ease forwards; }
+@keyframes sparkfly { 0% { transform: translate(0,0) scale(1); opacity: 1; } 100% { transform: translate(var(--dx), var(--dy)) scale(0); opacity: 0; } }
+</style>
+</head>
+<body>
+
+<div id="cur">
+  <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
+    <path d="M11 2 L20 11 L11 20 L2 11 Z" fill="none" stroke="#c8a96e" stroke-width="1.5"/>
+    <path d="M11 6 L16 11 L11 16 L6 11 Z" fill="#c8a96e" opacity="0.35"/>
+  </svg>
+</div>
+
+<div id="intro">
+  <div class="intro-logo"><span>R</span><span>U</span><span>N</span><span>W</span><span>A</span><span>Y</span></div>
+  <div class="intro-line"></div>
+  <div class="intro-sub">Edición Cumpleaños</div>
+</div>
+
+<div id="page">
+
+  <div class="masthead reveal">
+    <div class="mast-left">Vol. XXIX<br>Edición Especial</div>
+    <div class="mast-logo">RUNWAY</div>
+    <div class="mast-right">Mayo 2026<br>Invitación</div>
+    <div class="mast-tagline">La moda no se ve. Se vive.</div>
+  </div>
+
+  <div class="ticker-wrap reveal">
+    <div class="ticker-inner">
+      <span>EDICIÓN 29</span><span>·</span>
+      <span>LAURA</span><span>·</span>
+      <span>THE DEVIL WEARS PRADA 2</span><span>·</span>
+      <span>NOCHE DE GALA</span><span>·</span>
+      <span>THE WORK NEVER STOPS</span><span>·</span>
+      <span>EDICIÓN 29</span><span>·</span>
+      <span>LAURA</span><span>·</span>
+      <span>THE DEVIL WEARS PRADA 2</span><span>·</span>
+      <span>NOCHE DE GALA</span><span>·</span>
+      <span>THE WORK NEVER STOPS</span><span>·</span>
+    </div>
+  </div>
+
+  <div class="cover reveal">
+    <!-- Fashion icons: perfume, pearls, stiletto -->
+    <div class="fashion-icons">
+      <!-- Perfume bottle (No.5 style) -->
+      <svg width="36" height="58" viewBox="0 0 36 58" fill="none">
+        <rect x="8" y="14" width="20" height="40" rx="3" fill="#c8a96e"/>
+        <rect x="12" y="10" width="12" height="6" rx="1.5" fill="#c8a96e" opacity="0.75"/>
+        <rect x="15" y="6" width="6" height="6" rx="1" fill="#c8a96e" opacity="0.55"/>
+        <rect x="16" y="2" width="4" height="5" rx="1" fill="#c8a96e" opacity="0.4"/>
+        <rect x="10" y="22" width="16" height="1.5" rx="0.75" fill="rgba(0,0,0,0.2)"/>
+        <rect x="10" y="44" width="16" height="1.5" rx="0.75" fill="rgba(0,0,0,0.2)"/>
+        <text x="18" y="36" text-anchor="middle" font-family="'Bebas Neue',sans-serif" font-size="5" fill="rgba(0,0,0,0.3)" letter-spacing="1">N°5</text>
+      </svg>
+      <!-- Pearl necklace -->
+      <svg width="64" height="30" viewBox="0 0 64 30" fill="none">
+        <path d="M6 26 Q32 4 58 26" stroke="#c8a96e" stroke-width="1" fill="none" opacity="0.4"/>
+        <circle cx="6" cy="26" r="3.2" fill="#c8a96e"/>
+        <circle cx="15" cy="13" r="3.2" fill="#c8a96e"/>
+        <circle cx="24" cy="7" r="3.2" fill="#c8a96e"/>
+        <circle cx="32" cy="5" r="3.6" fill="#c8a96e"/>
+        <circle cx="40" cy="7" r="3.2" fill="#c8a96e"/>
+        <circle cx="49" cy="13" r="3.2" fill="#c8a96e"/>
+        <circle cx="58" cy="26" r="3.2" fill="#c8a96e"/>
+      </svg>
+      <!-- Stiletto -->
+      <svg width="46" height="48" viewBox="0 0 46 48" fill="none">
+        <path d="M6 38 L8 18 Q8 8 16 6 L36 6 Q44 6 44 14 L44 28 Q44 36 34 38 L16 40 Q10 41 8 46 L6 48" stroke="#c8a96e" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M8 18 L44 18" stroke="#c8a96e" stroke-width="0.8" opacity="0.3"/>
+        <line x1="6" y1="48" x2="10" y2="48" stroke="#c8a96e" stroke-width="2" stroke-linecap="round"/>
+      </svg>
+    </div>
+
+    <div class="cover-vol">Edición 29 · Especial Cumpleaños</div>
+    <span class="cover-headline-pre">Una invitación exclusiva para</span>
+    <div class="cover-name">Laura<span class="line2">veintinueve.</span></div>
+    <div class="cover-strapline">Esta noche, el mundo de la moda te espera</div>
+    <div class="cover-edition">Edición 29</div>
+  </div>
+
+  <!-- Official tagline block -->
+  <div class="tagline-block reveal">
+    <div class="tagline-quote">"The work never stops."</div>
+    <div class="tagline-source">The Devil Wears Prada 2 · Official Tagline · 20th Century Studios</div>
+  </div>
+
+  <div class="full-bleed reveal" style="margin-top:4px"></div>
+
+  <div class="clapper-section reveal">
+    <div>
+      <svg width="96" height="86" viewBox="0 0 96 86" fill="none">
+        <rect x="6" y="24" width="84" height="58" rx="3" fill="#1e1e1e" stroke="#c8a96e" stroke-width="1.5"/>
+        <line x1="6" y1="40" x2="90" y2="40" stroke="#333" stroke-width="1"/>
+        <line x1="6" y1="55" x2="90" y2="55" stroke="#333" stroke-width="1"/>
+        <line x1="6" y1="69" x2="90" y2="69" stroke="#333" stroke-width="1"/>
+        <text x="48" y="37" text-anchor="middle" font-family="'Bebas Neue',sans-serif" font-size="7.5" fill="#c8a96e" letter-spacing="2">RUNWAY FILMS</text>
+        <text x="48" y="50" text-anchor="middle" font-family="'Bebas Neue',sans-serif" font-size="6.5" fill="#a8a49e" letter-spacing="1">LAURA · 29</text>
+        <text x="48" y="64" text-anchor="middle" font-family="'Bebas Neue',sans-serif" font-size="6.5" fill="#a8a49e" letter-spacing="1">06 · 05 · 2026</text>
+        <text x="48" y="78" text-anchor="middle" font-family="'Bebas Neue',sans-serif" font-size="6.5" fill="#a8a49e" letter-spacing="1">TAKE I</text>
+        <rect x="6" y="9" width="84" height="17" rx="2" fill="#f7f4ef"/>
+        <rect x="6" y="9" width="14" height="17" fill="#080808"/>
+        <rect x="34" y="9" width="14" height="17" fill="#080808"/>
+        <rect x="62" y="9" width="14" height="17" fill="#080808"/>
+        <rect x="4" y="7" width="88" height="5" rx="2" fill="#c8a96e"/>
+      </svg>
+    </div>
+    <div>
+      <div class="clapper-label">La función de esta noche</div>
+      <div class="clapper-title">The Devil Wears<br>Prada 2</div>
+      <div class="clapper-subtitle">20th Century Studios · 2026</div>
+      <div class="clapper-meta">
+        <div class="meta-row">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="6.5" stroke="#c8a96e" stroke-width="1.2"/><line x1="8" y1="4.5" x2="8" y2="8" stroke="#c8a96e" stroke-width="1.3" stroke-linecap="round"/><line x1="8" y1="8" x2="10.8" y2="10.2" stroke="#c8a96e" stroke-width="1.3" stroke-linecap="round"/></svg>
+          <span class="meta-text"><strong>10:00 PM</strong> · Miércoles 6 de Mayo</span>
+        </div>
+        <div class="meta-row">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><polygon points="8,2.5 9.6,6 13.5,6.4 10.6,9.1 11.4,13 8,11.1 4.6,13 5.4,9.1 2.5,6.4 6.4,6" fill="none" stroke="#c8a96e" stroke-width="1.2" stroke-linejoin="round"/></svg>
+          <span class="meta-text">Entrada <strong>reservada</strong></span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Cast strip -->
+  <div class="cast-strip reveal">
+    <div class="cast-label">Elenco original</div>
+    <div class="cast-row">
+      <div class="cast-pill"><strong>Meryl Streep</strong> como Miranda Priestly</div>
+      <div class="cast-pill"><strong>Anne Hathaway</strong> como Andy Sachs</div>
+      <div class="cast-pill"><strong>Emily Blunt</strong> como Emily</div>
+      <div class="cast-pill"><strong>Stanley Tucci</strong> como Nigel</div>
+    </div>
+  </div>
+
+  <div class="section-bar reveal">
+    <div class="sb-line"></div>
+    <div class="sb-center">La nota del editor</div>
+    <div class="sb-line"></div>
+  </div>
+
+  <div class="message-section reveal">
+    <div class="msg-rule"></div>
+    <div class="msg-label">De parte de</div>
+    <p class="msg-text">
+      Amor, esta noche el mundo de la moda espera en pantalla grande.<br><br>
+      Porque cumplir <strong>29</strong> merece una función a tu altura.<br><br>
+      El resto corre por mi cuenta.
+    </p>
+  </div>
+
+  <div class="details-strip reveal">
+    <div class="detail-item">
+      <span class="di-label">Fecha</span>
+      <span class="di-val">Miércoles 6 de Mayo, 2026</span>
+    </div>
+    <div class="detail-item">
+      <span class="di-label">Hora de función</span>
+      <span class="di-val">10:00 PM</span>
+    </div>
+    <div class="detail-item">
+      <span class="di-label">Invitada</span>
+      <span class="di-val">Laura · VIP exclusiva</span>
+    </div>
+    <div class="detail-item">
+      <span class="di-label">Código de vestimenta</span>
+      <span class="di-val">Lo que tú elijas<br><small style="font-size:12px;color:var(--grey);font-style:italic">tú lo conviertes en haute couture</small></span>
+    </div>
+  </div>
+
+  <div class="miranda-section reveal">
+    <p class="miranda-quote">"Esta noche, la estrella no está en la pantalla. La estrella lleva tu nombre."</p>
+    <div class="miranda-attr">Miranda Priestly, si te conociera</div>
+  </div>
+
+  <div class="cta-section reveal">
+    <button class="cta-btn" id="cta" onclick="mirandaReply()">
+      <span id="cta-text">ACEPTO LA INVITACIÓN</span>
+    </button>
+    <div id="miranda-response"></div>
+  </div>
+
+  <div class="footer reveal">
+    <div class="footer-col">RUNWAY<br>EDICIÓN 29</div>
+    <div class="footer-col" style="text-align:center">Mayo 2026<br>The Work Never Stops</div>
+    <div class="footer-col" style="text-align:right">Entrada reservada</div>
+  </div>
+
+</div>
+
+<script>
+const cur = document.getElementById('cur');
+document.addEventListener('mousemove', e => {
+  cur.style.position = 'fixed';
+  cur.style.left = (e.clientX - 11) + 'px';
+  cur.style.top = (e.clientY - 11) + 'px';
+});
+document.addEventListener('click', e => {
+  for (let i = 0; i < 12; i++) {
+    const s = document.createElement('div'); s.className = 'spark';
+    const angle = (i / 12) * Math.PI * 2;
+    const dist = 24 + Math.random() * 36;
+    s.style.left = e.clientX + 'px'; s.style.top = e.clientY + 'px';
+    s.style.setProperty('--dx', Math.cos(angle) * dist + 'px');
+    s.style.setProperty('--dy', Math.sin(angle) * dist + 'px');
+    document.body.appendChild(s); setTimeout(() => s.remove(), 800);
+  }
+});
+setTimeout(() => {
+  document.getElementById('intro').classList.add('hide');
+  setTimeout(() => {
+    document.getElementById('intro').style.display = 'none';
+    document.getElementById('page').classList.add('visible');
+    observeReveal();
+  }, 900);
+}, 2700);
+function observeReveal() {
+  const els = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+  }, { threshold: 0.08 });
+  els.forEach(el => io.observe(el));
+}
+const lines = ["Eso es todo.","Perfecto. Ya lo esperaba.","Por supuesto que sí.","Menos palabras, más glamour.","Maravilloso. No llegues tarde."];
+let replied = false;
+function mirandaReply() {
+  if (replied) return; replied = true;
+  document.getElementById('cta').classList.add('active');
+  document.getElementById('cta-text').textContent = 'CONFIRMADO ·';
+  const res = document.getElementById('miranda-response');
+  res.textContent = '"' + lines[Math.floor(Math.random() * lines.length)] + '"';
+  res.classList.add('show');
+}
+</script>
+</body>
+</html>
