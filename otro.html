@@ -77,26 +77,26 @@ body { background: var(--dark); font-family: 'Jost', sans-serif; overflow-x: hid
 .paper { background: var(--cream); margin: 0 14px; border-radius: 2px; box-shadow: 0 2px 4px rgba(0,0,0,0.08), 0 10px 40px rgba(0,0,0,0.15), 0 0 0 1px rgba(184,148,90,0.18); overflow: hidden; position: relative; }
 .paper::before { content: ''; position: absolute; inset: 0; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.025'/%3E%3C/svg%3E"); pointer-events: none; z-index: 0; }
 
-.card-top { padding: 28px 28px 0; text-align: center; }
-.ornament-top { display: flex; align-items: center; gap: 10px; margin-bottom: 6px; }
+.card-top { padding: 36px 28px 8px; text-align: center; }
+.ornament-top { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; }
 .orn-line { flex: 1; height: 1px; background: linear-gradient(to right, transparent, var(--gold)); }
 .orn-line.rev { background: linear-gradient(to left, transparent, var(--gold)); }
-.orn-diamond { width: 7px; height: 7px; background: var(--gold); transform: rotate(45deg); flex-shrink: 0; }
-.card-supertag { font-family: 'Cinzel', serif; font-size: 9px; letter-spacing: 5px; color: var(--gold); }
+.orn-diamond { width: 8px; height: 8px; background: var(--gold); transform: rotate(45deg); flex-shrink: 0; }
+.card-supertag { font-family: 'Cinzel', serif; font-size: 11px; letter-spacing: 5px; color: var(--gold); font-weight: 600; }
 
 /* HERO */
-.card-hero { padding: 36px 32px 28px; text-align: center; position: relative; z-index: 1; color: var(--text); border-bottom: 1px solid rgba(184,148,90,0.18); }
-.hero-eyebrow { font-family: 'Jost', sans-serif; font-size: 11px; font-weight: 300; letter-spacing: 6px; color: var(--rose); margin-bottom: 10px; }
-.hero-name { font-family: 'Alex Brush', cursive; font-size: 96px; color: var(--burg); line-height: 0.95; margin-bottom: 8px; }
-.hero-years { font-family: 'Cinzel', serif; font-size: 12px; letter-spacing: 5px; color: var(--gold); margin-bottom: 32px; }
+.card-hero { padding: 40px 32px 32px; text-align: center; position: relative; z-index: 1; color: var(--text); border-bottom: 1px solid rgba(184,148,90,0.18); }
+.hero-eyebrow { font-family: 'Jost', sans-serif; font-size: 13px; font-weight: 400; letter-spacing: 7px; color: var(--rose); margin-bottom: 12px; }
+.hero-name { font-family: 'Alex Brush', cursive; font-size: 110px; color: var(--burg); line-height: 0.95; margin-bottom: 10px; }
+.hero-years { font-family: 'Cinzel', serif; font-size: 14px; letter-spacing: 6px; color: var(--gold); margin-bottom: 34px; font-weight: 600; }
 
 /* Hero illustration — wine glasses toasting */
 .hero-illustration { display: flex; justify-content: center; align-items: flex-end; gap: 0; }
 
 /* BODY */
 .card-body { padding: 32px 32px 24px; color: var(--text); position: relative; z-index: 1; }
-.section-label { font-family: 'Cinzel', serif; font-size: 9px; letter-spacing: 4px; color: var(--gold); margin-bottom: 16px; display: block; }
-.invitation-text { font-family: 'Cormorant Garamond', serif; font-size: 20px; line-height: 2; color: var(--text); margin-bottom: 28px; }
+.section-label { font-family: 'Cinzel', serif; font-size: 11px; letter-spacing: 5px; color: var(--gold); margin-bottom: 18px; display: block; font-weight: 600; }
+.invitation-text { font-family: 'Cormorant Garamond', serif; font-size: 22px; line-height: 2; color: var(--text); margin-bottom: 28px; }
 .invitation-text strong { color: var(--burg); font-weight: 400; }
 .invitation-text em { color: var(--rose); }
 
@@ -106,10 +106,10 @@ body { background: var(--dark); font-family: 'Jost', sans-serif; overflow-x: hid
 .details-list { display: flex; flex-direction: column; }
 .detail-row { display: flex; align-items: flex-start; gap: 18px; padding: 18px 0; border-bottom: 1px solid rgba(184,148,90,0.12); }
 .detail-row:last-child { border-bottom: none; }
-.detail-icon-wrap { width: 38px; height: 38px; border-radius: 50%; border: 1px solid rgba(184,148,90,0.3); display: flex; align-items: center; justify-content: center; flex-shrink: 0; background: rgba(184,148,90,0.05); }
-.d-label { font-family: 'Cinzel', serif; font-size: 8.5px; letter-spacing: 3px; color: var(--gold); margin-bottom: 4px; }
-.d-value { font-family: 'Jost', sans-serif; font-size: 19px; font-weight: 300; color: var(--text); margin-bottom: 2px; }
-.d-hint { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 13px; color: var(--text-soft); }
+.detail-icon-wrap { width: 42px; height: 42px; border-radius: 50%; border: 1px solid rgba(184,148,90,0.3); display: flex; align-items: center; justify-content: center; flex-shrink: 0; background: rgba(184,148,90,0.05); }
+.d-label { font-family: 'Cinzel', serif; font-size: 10px; letter-spacing: 3px; color: var(--gold); margin-bottom: 5px; font-weight: 600; }
+.d-value { font-family: 'Jost', sans-serif; font-size: 21px; font-weight: 300; color: var(--text); margin-bottom: 3px; }
+.d-hint { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 14px; color: var(--text-soft); }
 
 /* CALENDAR */
 .cal-block { margin: 28px 32px 0; padding: 22px 24px; background: var(--burg); border-radius: 2px; display: flex; align-items: center; gap: 18px; cursor: pointer; position: relative; z-index: 1; overflow: hidden; transition: background 0.3s ease; }
@@ -166,16 +166,48 @@ body { background: var(--dark); font-family: 'Jost', sans-serif; overflow-x: hid
 
 /* QUOTE */
 .quote-block { padding: 0 32px 32px; color: var(--text); position: relative; z-index: 1; }
-.quote-text { font-family: 'Alex Brush', cursive; font-size: 32px; color: var(--burg); line-height: 1.5; padding-left: 18px; border-left: 2px solid var(--rose); margin-bottom: 10px; }
-.quote-from { font-family: 'Cinzel', serif; font-size: 8.5px; letter-spacing: 4px; color: var(--gold); padding-left: 20px; }
+.quote-text { font-family: 'Alex Brush', cursive; font-size: 38px; color: var(--burg); line-height: 1.5; padding-left: 18px; border-left: 2px solid var(--rose); margin-bottom: 10px; }
+.quote-from { font-family: 'Cinzel', serif; font-size: 10px; letter-spacing: 4px; color: var(--gold); padding-left: 20px; }
 
 .paper-footer { padding: 16px 32px 28px; display: flex; justify-content: space-between; border-top: 1px solid rgba(184,148,90,0.15); position: relative; z-index: 1; }
-.pf-col { font-family: 'Cinzel', serif; font-size: 7.5px; letter-spacing: 2px; color: var(--text-soft); line-height: 1.8; }
+.pf-col { font-family: 'Cinzel', serif; font-size: 9px; letter-spacing: 2px; color: var(--text-soft); line-height: 1.8; }
 
 .card-bottom { padding: 18px 28px 0; text-align: center; }
 .card-bottom-text { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 12px; color: rgba(240,232,220,0.28); letter-spacing: 2px; }
 
-/* CONFETTI */
+/* MUSIC BUTTON */
+.music-btn {
+  position: fixed;
+  bottom: 24px; right: 20px;
+  z-index: 4000;
+  width: 44px; height: 44px;
+  border-radius: 50%;
+  background: rgba(26,15,10,0.9);
+  border: 1px solid var(--gold);
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer;
+  opacity: 0;
+  transition: opacity 0.5s ease, background 0.3s ease;
+  backdrop-filter: blur(8px);
+}
+.music-btn.visible { opacity: 1; }
+.music-btn:hover { background: var(--gold); }
+.music-btn:hover .icon-play path, .music-btn:hover .icon-pause rect { fill: var(--dark); }
+
+/* POST RSVP MESSAGE */
+#rsvp-message {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: 20px;
+  color: var(--burg);
+  text-align: center;
+  margin-top: 16px;
+  min-height: 28px;
+  opacity: 0;
+  transform: translateY(8px);
+  transition: all 0.7s ease;
+}
+#rsvp-message.show { opacity: 1; transform: translateY(0); }
 .confetti-piece { position: fixed; pointer-events: none; z-index: 8000; animation: confetti-fall 2s ease forwards; }
 @keyframes confetti-fall { 0% { transform: translateY(var(--sy)) translateX(0) rotate(0deg); opacity: 1; } 100% { transform: translateY(100vh) translateX(var(--sx)) rotate(720deg); opacity: 0; } }
 
@@ -183,6 +215,15 @@ body { background: var(--dark); font-family: 'Jost', sans-serif; overflow-x: hid
 .reveal { opacity: 0; transform: translateY(20px); transition: opacity 0.7s ease, transform 0.7s ease; }
 .reveal.in { opacity: 1; transform: translateY(0); }
 .r1{transition-delay:0.0s}.r2{transition-delay:0.08s}.r3{transition-delay:0.14s}.r4{transition-delay:0.2s}.r5{transition-delay:0.26s}.r6{transition-delay:0.32s}
+
+/* Romantic hearts float */
+@keyframes heartFloat {
+  0%,100%{transform:translateY(0) scale(1);opacity:0.6}
+  50%{transform:translateY(-10px) scale(1.08);opacity:1}
+}
+.heart-float-1{animation:heartFloat 2.8s ease-in-out infinite 0s}
+.heart-float-2{animation:heartFloat 2.8s ease-in-out infinite 0.9s}
+.heart-float-3{animation:heartFloat 2.8s ease-in-out infinite 1.8s}
 
 /* Wine glass animations */
 @keyframes glassShimmer { 0%,100%{opacity:0.15} 50%{opacity:0.35} }
@@ -336,15 +377,28 @@ body { background: var(--dark); font-family: 'Jost', sans-serif; overflow-x: hid
           </g>
         </svg>
       </div>
+
+      <!-- Floating hearts romantic element -->
+      <div style="display:flex;justify-content:center;gap:22px;margin-top:16px;margin-bottom:4px;">
+        <svg class="heart-float-1" width="18" height="16" viewBox="0 0 18 16" fill="none">
+          <path d="M9 14.5 Q4.5 10.5 2.5 7.5 Q1.5 4.5 4 3 Q5.5 2.2 7 3.5 Q8 4.5 9 6 Q10 4.5 11 3.5 Q12.5 2.2 14 3 Q16.5 4.5 15.5 7.5 Q13.5 10.5 9 14.5Z" fill="#c4756a" opacity="0.7"/>
+        </svg>
+        <svg class="heart-float-2" width="24" height="22" viewBox="0 0 24 22" fill="none">
+          <path d="M12 20 Q6 14.5 3.5 10.5 Q2 7 4.5 5 Q6.5 3.5 8.5 5 Q10 6.5 12 9 Q14 6.5 15.5 5 Q17.5 3.5 19.5 5 Q22 7 20.5 10.5 Q18 14.5 12 20Z" fill="#b8505a" opacity="0.55"/>
+        </svg>
+        <svg class="heart-float-3" width="18" height="16" viewBox="0 0 18 16" fill="none">
+          <path d="M9 14.5 Q4.5 10.5 2.5 7.5 Q1.5 4.5 4 3 Q5.5 2.2 7 3.5 Q8 4.5 9 6 Q10 4.5 11 3.5 Q12.5 2.2 14 3 Q16.5 4.5 15.5 7.5 Q13.5 10.5 9 14.5Z" fill="#e8b4ae" opacity="0.65"/>
+        </svg>
+      </div>
     </div>
 
     <div class="card-body reveal r3">
       <span class="section-label">La invitación</span>
       <p class="invitation-text">
         Amor,<br><br>
-        Tienes una cena reservada este sábado.<br>
-        Solo tienes que <strong>brillar</strong>.
-        <em>El resto corre por mi cuenta.</em>
+        Este sábado tienes una cena reservada.<br>
+        Ponte hermosa. Yo paso por ti.<br><br>
+        <strong>29 años</strong> merecen una celebración especial.
       </p>
 
       <div class="card-divider">
@@ -466,6 +520,7 @@ body { background: var(--dark); font-family: 'Jost', sans-serif; overflow-x: hid
       <button class="rsvp-btn" id="rsvp-btn" onclick="confirmRSVP()">
         <span id="rsvp-text">ALLÁ ESTARÉ ♥</span>
       </button>
+      <div id="rsvp-message"></div>
     </div>
 
     <!-- QUOTE -->
@@ -484,6 +539,22 @@ body { background: var(--dark); font-family: 'Jost', sans-serif; overflow-x: hid
   <div class="card-bottom reveal r6">
     <div class="card-bottom-text">Feliz cumpleaños, Laura &nbsp;✦&nbsp; 29 años de ser extraordinaria</div>
   </div>
+</div>
+
+<!-- AUDIO -->
+<audio id="bg-music" loop>
+  <source src="cancioncena.mp3" type="audio/mpeg">
+</audio>
+
+<!-- MUSIC BUTTON -->
+<div class="music-btn" id="music-btn" onclick="toggleMusic()">
+  <svg class="icon-play" id="icon-play" width="18" height="18" viewBox="0 0 18 18" fill="none">
+    <path d="M6 5 L6 13 L14 9 Z" fill="#b8945a"/>
+  </svg>
+  <svg class="icon-pause" id="icon-pause" width="18" height="18" viewBox="0 0 18 18" fill="none" style="display:none">
+    <rect x="5" y="4" width="3" height="10" rx="1" fill="#b8945a"/>
+    <rect x="10" y="4" width="3" height="10" rx="1" fill="#b8945a"/>
+  </svg>
 </div>
 
 <script>
@@ -530,10 +601,13 @@ function openEnvelope() {
       envScreen.style.display = 'none';
       const card = document.getElementById('card');
       card.style.display = 'block';
+      document.getElementById('music-btn').classList.add('visible');
       window.scrollTo(0, 0);
       requestAnimationFrame(() => requestAnimationFrame(() => {
         card.classList.add('show');
         observeReveal();
+        // Arrancar música al abrir el sobre
+        startMusic();
       }));
     }, 750);
   }, 950);
@@ -548,20 +622,57 @@ function observeReveal() {
   els.forEach((el, i) => { if (i >= 5) io.observe(el); });
 }
 
-// Countdown
+// Countdown — turns burgundy under 24h
 function updateCD() {
   const diff = new Date('2026-05-09T16:00:00') - new Date();
-  if (diff <= 0) { ['d','h','m','s'].forEach(id => document.getElementById('cd-'+id).textContent = '00'); document.getElementById('cd-sub').textContent = '¡Es hoy, amor!'; return; }
+  if (diff <= 0) {
+    ['d','h','m','s'].forEach(id => document.getElementById('cd-'+id).textContent = '00');
+    document.getElementById('cd-sub').textContent = '¡Es hoy, amor!';
+    return;
+  }
   document.getElementById('cd-d').textContent = String(Math.floor(diff/86400000)).padStart(2,'0');
   document.getElementById('cd-h').textContent = String(Math.floor((diff%86400000)/3600000)).padStart(2,'0');
   document.getElementById('cd-m').textContent = String(Math.floor((diff%3600000)/60000)).padStart(2,'0');
   document.getElementById('cd-s').textContent = String(Math.floor((diff%60000)/1000)).padStart(2,'0');
+  // Turn burgundy when less than 24h
+  if (diff < 86400000) {
+    document.querySelectorAll('.cd-num').forEach(el => el.style.color = '#5c1a28');
+    document.querySelectorAll('.cd-sep').forEach(el => el.style.color = '#5c1a28');
+    document.getElementById('cd-sub').textContent = '¡Ya falta muy poco!';
+  }
 }
 updateCD(); setInterval(updateCD, 1000);
 
+// MÚSICA
+let musicPlaying = false;
+function startMusic() {
+  const audio = document.getElementById('bg-music');
+  audio.volume = 0.35;
+  audio.play().then(() => {
+    musicPlaying = true;
+    document.getElementById('icon-play').style.display = 'none';
+    document.getElementById('icon-pause').style.display = 'block';
+  }).catch(() => {});
+}
+function toggleMusic() {
+  const audio = document.getElementById('bg-music');
+  if (musicPlaying) {
+    audio.pause();
+    musicPlaying = false;
+    document.getElementById('icon-play').style.display = 'block';
+    document.getElementById('icon-pause').style.display = 'none';
+  } else {
+    audio.play().then(() => {
+      musicPlaying = true;
+      document.getElementById('icon-play').style.display = 'none';
+      document.getElementById('icon-pause').style.display = 'block';
+    }).catch(() => {});
+  }
+}
+
 // ICS
 function downloadICS() {
-  const ics = `BEGIN:VCALENDAR\nVERSION:2.0\nPRODID:-//Cena Laura//ES\nBEGIN:VEVENT\nDTSTART:20260509T160000\nDTEND:20260509T210000\nSUMMARY:Una velada para los dos\nDESCRIPTION:Una velada para los dos. Te amo mi amor ❤️\nLOCATION:Reservado\nEND:VEVENT\nEND:VCALENDAR`;
+  const ics = `BEGIN:VCALENDAR\nVERSION:2.0\nPRODID:-//Cena Laura//ES\nBEGIN:VEVENT\nDTSTART:20260509T160000\nDTEND:20260509T200000\nSUMMARY:Una velada para los dos ✨🥂\nDESCRIPTION:Una velada para los dos. Te amo mi amor ❤️\nLOCATION:Reservado\nBEGIN:VALARM\nTRIGGER:-PT2H\nACTION:DISPLAY\nDESCRIPTION:Tu cena especial empieza en 2 horas 🌹\nEND:VALARM\nEND:VEVENT\nEND:VCALENDAR`;
   const blob = new Blob([ics], {type: 'text/calendar;charset=utf-8'});
   const url = URL.createObjectURL(blob);
   const a = document.createElement('a'); a.href = url; a.download = 'cena-especial-laura.ics';
@@ -601,6 +712,11 @@ function confirmRSVP() {
   if (rsvpDone) return; rsvpDone = true;
   const btn = document.getElementById('rsvp-btn'); btn.classList.add('confirmed');
   document.getElementById('rsvp-text').textContent = '¡Allá estaré! ♥';
+  const msg = document.getElementById('rsvp-message');
+  setTimeout(() => {
+    msg.textContent = 'Te espero con todo. Te amo.';
+    msg.classList.add('show');
+  }, 600);
   launchConfetti(false);
 }
 
