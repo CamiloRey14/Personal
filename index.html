@@ -22,7 +22,14 @@ body { background: var(--black); color: var(--white); font-family: 'Didact Gothi
 #cur { position: fixed; pointer-events: none; z-index: 9999; mix-blend-mode: difference; }
 
 /* INTRO */
-#intro { position: fixed; inset: 0; background: var(--black); z-index: 5000; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+#intro {
+  position: fixed; inset: 0; z-index: 5000;
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  background-color: var(--black);
+  background-image:
+    repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(255,255,255,0.015) 2px, rgba(255,255,255,0.015) 4px),
+    repeating-linear-gradient(90deg, transparent, transparent 2px, rgba(255,255,255,0.015) 2px, rgba(255,255,255,0.015) 4px);
+}
 .intro-logo { font-family: 'Bebas Neue', sans-serif; font-size: clamp(70px, 20vw, 120px); letter-spacing: 20px; color: var(--white); overflow: hidden; line-height: 1; display: flex; }
 .intro-logo span { display: inline-block; transform: translateY(110%); animation: introRise 1s cubic-bezier(0.16,1,0.3,1) forwards; }
 .intro-logo span:nth-child(1){animation-delay:0.1s}.intro-logo span:nth-child(2){animation-delay:0.2s}.intro-logo span:nth-child(3){animation-delay:0.3s}.intro-logo span:nth-child(4){animation-delay:0.4s}.intro-logo span:nth-child(5){animation-delay:0.5s}.intro-logo span:nth-child(6){animation-delay:0.6s}
@@ -230,6 +237,50 @@ body { background: var(--black); color: var(--white); font-family: 'Didact Gothi
 /* SPARKLE */
 .spark { position: fixed; pointer-events: none; z-index: 9000; width: 3px; height: 3px; background: var(--gold); border-radius: 50%; animation: sparkfly 0.8s ease forwards; }
 @keyframes sparkfly { 0% { transform: translate(0,0) scale(1); opacity: 1; } 100% { transform: translate(var(--dx), var(--dy)) scale(0); opacity: 0; } }
+
+/* COUNTDOWN CINE */
+.cine-countdown {
+  background: #0a0a0a;
+  border-top: 1px solid var(--mid);
+  border-bottom: 1px solid var(--mid);
+  padding: 24px 28px;
+  text-align: center;
+}
+.cine-cd-label { font-family: 'Bebas Neue', sans-serif; font-size: 9px; letter-spacing: 5px; color: var(--gold); margin-bottom: 14px; }
+.cine-cd-numbers { display: flex; justify-content: center; gap: 4px; align-items: center; }
+.cine-cd-unit { text-align: center; min-width: 52px; }
+.cine-cd-num { font-family: 'Bebas Neue', sans-serif; font-size: 44px; color: var(--white); line-height: 1; display: block; letter-spacing: 2px; }
+.cine-cd-sep { font-family: 'Bebas Neue', sans-serif; font-size: 32px; color: var(--red); opacity: 0.6; padding-bottom: 12px; line-height: 1; }
+.cine-cd-unitlabel { font-family: 'Didact Gothic', sans-serif; font-size: 7px; letter-spacing: 3px; color: var(--grey); display: block; margin-top: 2px; opacity: 0.6; }
+.cine-cd-sub { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 13px; color: var(--grey); margin-top: 12px; }
+
+/* QUÉ ESPERAR */
+.expect-section { padding: 36px 28px; }
+.expect-label { font-family: 'Bebas Neue', sans-serif; font-size: 9px; letter-spacing: 5px; color: var(--gold); margin-bottom: 24px; }
+.expect-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+.expect-item { text-align: center; }
+.expect-icon { margin: 0 auto 10px; display: block; }
+.expect-title { font-family: 'Bebas Neue', sans-serif; font-size: 11px; letter-spacing: 3px; color: var(--white); margin-bottom: 4px; }
+.expect-desc { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 12px; color: var(--grey); line-height: 1.4; }
+
+/* MUSIC BUTTON */
+.music-btn {
+  position: fixed;
+  bottom: 24px; right: 20px;
+  z-index: 4000;
+  width: 44px; height: 44px;
+  border-radius: 50%;
+  background: rgba(8,8,8,0.9);
+  border: 1px solid var(--gold);
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer;
+  opacity: 0;
+  transition: opacity 0.5s ease, background 0.3s ease;
+  backdrop-filter: blur(8px);
+}
+.music-btn.visible { opacity: 1; }
+.music-btn:hover { background: var(--gold); }
+.music-btn:hover .icon-play path, .music-btn:hover .icon-pause rect { fill: var(--black); }
 
 /* RUNWAY WALK ANIMATION */
 @keyframes walkRight { from { transform: translateX(-120px); } to { transform: translateX(520px); } }
@@ -452,9 +503,71 @@ body { background: var(--black); color: var(--white); font-family: 'Didact Gothi
         Hay una <strong>segunda sorpresa</strong> esperándote.<br>
         Cuando estés lista, ábrela.
       </p>
-      <a class="secret-link-btn" id="secret-dinner-link" href="https://Kmilorey.github.io/Personal/otro.html" target="_blank">
+      <a class="secret-link-btn" id="secret-dinner-link" href="REEMPLAZAR_CON_LINK_CENA" target="_blank">
         <span>VER MI PRÓXIMA SORPRESA</span>
       </a>
+    </div>
+  </div>
+
+  <!-- COUNTDOWN CINE -->
+  <div class="cine-countdown reveal">
+    <div class="cine-cd-label">Cuenta regresiva para la función</div>
+    <div class="cine-cd-numbers">
+      <div class="cine-cd-unit"><span class="cine-cd-num" id="ccd-d">--</span><span class="cine-cd-unitlabel">días</span></div>
+      <span class="cine-cd-sep">:</span>
+      <div class="cine-cd-unit"><span class="cine-cd-num" id="ccd-h">--</span><span class="cine-cd-unitlabel">horas</span></div>
+      <span class="cine-cd-sep">:</span>
+      <div class="cine-cd-unit"><span class="cine-cd-num" id="ccd-m">--</span><span class="cine-cd-unitlabel">min</span></div>
+      <span class="cine-cd-sep">:</span>
+      <div class="cine-cd-unit"><span class="cine-cd-num" id="ccd-s">--</span><span class="cine-cd-unitlabel">seg</span></div>
+    </div>
+    <div class="cine-cd-sub" id="ccd-sub">Para la noche más fashion del año</div>
+  </div>
+
+  <!-- QUÉ ESPERAR -->
+  <div class="expect-section reveal">
+    <div class="expect-label">Qué esperar esta noche</div>
+    <div class="expect-grid">
+      <div class="expect-item">
+        <!-- Popcorn SVG -->
+        <svg class="expect-icon" width="36" height="44" viewBox="0 0 36 44" fill="none">
+          <rect x="8" y="18" width="20" height="22" rx="2" fill="#1e1e1e" stroke="#c8a96e" stroke-width="1"/>
+          <path d="M10 18 L8 40 L28 40 L26 18Z" fill="#1e1e1e"/>
+          <circle cx="13" cy="12" r="5" fill="#c8a96e" opacity="0.7"/>
+          <circle cx="18" cy="10" r="6" fill="#f7f4ef" opacity="0.6"/>
+          <circle cx="23" cy="12" r="5" fill="#c8a96e" opacity="0.7"/>
+          <circle cx="15" cy="17" r="4" fill="#f7f4ef" opacity="0.5"/>
+          <circle cx="21" cy="17" r="4" fill="#c8a96e" opacity="0.6"/>
+          <line x1="12" y1="24" x2="24" y2="24" stroke="#c8a96e" stroke-width="0.8" opacity="0.4"/>
+          <line x1="11" y1="30" x2="25" y2="30" stroke="#c8a96e" stroke-width="0.8" opacity="0.4"/>
+        </svg>
+        <div class="expect-title">Palomitas</div>
+        <div class="expect-desc">Las favoritas de la noche</div>
+      </div>
+      <div class="expect-item">
+        <!-- Dress/glamour SVG -->
+        <svg class="expect-icon" width="36" height="44" viewBox="0 0 36 44" fill="none">
+          <path d="M18 4 Q14 8 10 12 L6 28 Q10 30 18 30 Q26 30 30 28 L26 12 Q22 8 18 4Z" fill="#1e1e1e" stroke="#c8a96e" stroke-width="1"/>
+          <path d="M13 28 Q10 34 9 42 L27 42 Q26 34 23 28Z" fill="#1e1e1e" stroke="#c8a96e" stroke-width="1"/>
+          <path d="M14 6 Q16 10 18 12 Q20 10 22 6" stroke="#c8a96e" stroke-width="0.8" fill="none" opacity="0.5"/>
+          <circle cx="18" cy="18" r="2" fill="#c8a96e" opacity="0.4"/>
+          <path d="M10 12 L8 14" stroke="#c8a96e" stroke-width="1" stroke-linecap="round" opacity="0.5"/>
+          <path d="M26 12 L28 14" stroke="#c8a96e" stroke-width="1" stroke-linecap="round" opacity="0.5"/>
+        </svg>
+        <div class="expect-title">Glamour</div>
+        <div class="expect-desc">Una noche de alta costura</div>
+      </div>
+      <div class="expect-item">
+        <!-- Two people / heart SVG -->
+        <svg class="expect-icon" width="36" height="44" viewBox="0 0 36 44" fill="none">
+          <circle cx="12" cy="12" r="5" fill="none" stroke="#c8a96e" stroke-width="1"/>
+          <circle cx="24" cy="12" r="5" fill="none" stroke="#c8a96e" stroke-width="1"/>
+          <path d="M4 32 Q4 22 12 20 Q18 18 18 18 Q18 18 24 20 Q32 22 32 32" stroke="#c8a96e" stroke-width="1" fill="none"/>
+          <path d="M18 38 Q14 34 12 31 Q11 28 13 27 Q14.5 26.5 16 28 Q17 29 18 30.5 Q19 29 20 28 Q21.5 26.5 23 27 Q25 28 24 31 Q22 34 18 38Z" fill="#c8a96e" opacity="0.7"/>
+        </svg>
+        <div class="expect-title">Tú y yo</div>
+        <div class="expect-desc">Lo mejor de la noche</div>
+      </div>
     </div>
   </div>
 
@@ -471,6 +584,22 @@ body { background: var(--black); color: var(--white); font-family: 'Didact Gothi
     <div class="footer-col" style="text-align:right">Entrada reservada</div>
   </div>
 
+</div>
+
+<!-- AUDIO -->
+<audio id="bg-music" loop>
+  <source src="cancioncine.mp3" type="audio/mpeg">
+</audio>
+
+<!-- MUSIC BUTTON -->
+<div class="music-btn" id="music-btn" onclick="toggleMusic()">
+  <svg class="icon-play" id="icon-play" width="18" height="18" viewBox="0 0 18 18" fill="none">
+    <path d="M6 5 L6 13 L14 9 Z" fill="#c8a96e"/>
+  </svg>
+  <svg class="icon-pause" id="icon-pause" width="18" height="18" viewBox="0 0 18 18" fill="none" style="display:none">
+    <rect x="5" y="4" width="3" height="10" rx="1" fill="#c8a96e"/>
+    <rect x="10" y="4" width="3" height="10" rx="1" fill="#c8a96e"/>
+  </svg>
 </div>
 
 <script>
@@ -496,6 +625,7 @@ setTimeout(() => {
   setTimeout(() => {
     document.getElementById('intro').style.display = 'none';
     document.getElementById('page').classList.add('visible');
+    document.getElementById('music-btn').classList.add('visible');
     observeReveal();
   }, 900);
 }, 2700);
@@ -506,6 +636,33 @@ function observeReveal() {
   }, { threshold: 0.08 });
   els.forEach(el => io.observe(el));
 }
+
+// COUNTDOWN CINE — hasta 10pm del 6 de mayo
+function updateCineCD() {
+  const target = new Date('2026-05-06T22:00:00');
+  const diff = target - new Date();
+  if (diff <= 0) {
+    ['d','h','m','s'].forEach(id => document.getElementById('ccd-'+id).textContent = '00');
+    document.getElementById('ccd-sub').textContent = '¡Es esta noche!';
+    // Turn countdown red when showing
+    document.querySelectorAll('.cine-cd-num').forEach(el => el.style.color = '#9b1c1c');
+    return;
+  }
+  const d = Math.floor(diff / 86400000);
+  const h = Math.floor((diff % 86400000) / 3600000);
+  const m = Math.floor((diff % 3600000) / 60000);
+  const s = Math.floor((diff % 60000) / 1000);
+  document.getElementById('ccd-d').textContent = String(d).padStart(2,'0');
+  document.getElementById('ccd-h').textContent = String(h).padStart(2,'0');
+  document.getElementById('ccd-m').textContent = String(m).padStart(2,'0');
+  document.getElementById('ccd-s').textContent = String(s).padStart(2,'0');
+  // Turn red when less than 24h
+  if (diff < 86400000) {
+    document.querySelectorAll('.cine-cd-num').forEach(el => el.style.color = '#9b1c1c');
+  }
+}
+updateCineCD();
+setInterval(updateCineCD, 1000);
 const lines = ["Eso es todo.","Perfecto. Ya lo esperaba.","Por supuesto que sí.","Menos palabras, más glamour.","Maravilloso. No llegues tarde."];
 let replied = false;
 function mirandaReply() {
@@ -515,6 +672,35 @@ function mirandaReply() {
   const res = document.getElementById('miranda-response');
   res.textContent = '"' + lines[Math.floor(Math.random() * lines.length)] + '"';
   res.classList.add('show');
+  // Arrancar música al aceptar
+  startMusic();
+}
+
+// MÚSICA
+let musicPlaying = false;
+function startMusic() {
+  const audio = document.getElementById('bg-music');
+  audio.volume = 0.4;
+  audio.play().then(() => {
+    musicPlaying = true;
+    document.getElementById('icon-play').style.display = 'none';
+    document.getElementById('icon-pause').style.display = 'block';
+  }).catch(() => {});
+}
+function toggleMusic() {
+  const audio = document.getElementById('bg-music');
+  if (musicPlaying) {
+    audio.pause();
+    musicPlaying = false;
+    document.getElementById('icon-play').style.display = 'block';
+    document.getElementById('icon-pause').style.display = 'none';
+  } else {
+    audio.play().then(() => {
+      musicPlaying = true;
+      document.getElementById('icon-play').style.display = 'none';
+      document.getElementById('icon-pause').style.display = 'block';
+    }).catch(() => {});
+  }
 }
 
 // PIN cine — código 0605
