@@ -45,11 +45,39 @@ body { font-family:'Plus Jakarta Sans',system-ui,sans-serif; background:var(--pa
 @keyframes pulse{0%,100%{opacity:1}50%{opacity:0.4}}
 
 /* COUNTDOWN */
-.countdown { display:flex; gap:10px; justify-content:center; flex-wrap:wrap; padding-bottom:34px; }
+.countdown { display:flex; gap:10px; justify-content:center; flex-wrap:wrap; }
 .cd-box { background:rgba(255,255,255,0.08); border:1px solid rgba(255,255,255,0.15);
   border-radius:10px; padding:10px 14px; min-width:64px; text-align:center; }
 .cd-num { font-size:1.5rem; font-weight:700; color:var(--white); line-height:1; }
 .cd-lbl { font-size:0.62rem; text-transform:uppercase; letter-spacing:1px; color:rgba(255,255,255,0.55); margin-top:4px; }
+
+/* HEADER HIGHLIGHTS (countdown + payment key) */
+.header-highlights {
+  display:flex; gap:14px; justify-content:center; align-items:stretch; flex-wrap:wrap;
+  padding-bottom:34px; max-width:640px; margin:0 auto;
+}
+.highlight-divider { width:1px; background:rgba(255,255,255,0.15); align-self:stretch; }
+.key-highlight {
+  display:flex; align-items:center; gap:12px; background:rgba(255,255,255,0.08);
+  border:1px solid rgba(255,255,255,0.15); border-radius:10px; padding:10px 18px;
+}
+.key-highlight-icon {
+  width:34px; height:34px; border-radius:8px; background:rgba(255,255,255,0.1);
+  display:flex; align-items:center; justify-content:center; color:var(--sky); flex-shrink:0;
+}
+.key-highlight-text { text-align:left; }
+.key-highlight-label { font-size:0.62rem; text-transform:uppercase; letter-spacing:1px; color:rgba(255,255,255,0.55); margin-bottom:2px; }
+.key-highlight-value { font-size:1rem; font-weight:700; color:var(--white); letter-spacing:0.3px; }
+.key-highlight-copy {
+  background:rgba(255,255,255,0.12); border:none; border-radius:7px; width:30px; height:30px;
+  display:flex; align-items:center; justify-content:center; color:rgba(255,255,255,0.85); cursor:pointer;
+  transition:background .15s; flex-shrink:0;
+}
+.key-highlight-copy:hover { background:rgba(255,255,255,0.22); }
+@media (max-width:560px){
+  .header-highlights { flex-direction:column; align-items:center; }
+  .highlight-divider { display:none; }
+}
 
 .page { max-width:960px; margin:0 auto; padding:28px 16px 60px; }
 
@@ -63,11 +91,12 @@ body { font-family:'Plus Jakarta Sans',system-ui,sans-serif; background:var(--pa
 .view-toggle button.active { background:var(--navy); color:white; }
 
 /* KPI */
-.kpi-strip { display:grid; grid-template-columns:repeat(auto-fit,minmax(135px,1fr)); gap:12px; margin-bottom:28px; }
-.kpi { background:var(--white); border:1px solid var(--border); border-radius:12px; padding:16px 14px;
-  text-align:center; box-shadow:0 1px 4px rgba(15,30,46,0.06); }
-.kpi-label { font-size:0.66rem; text-transform:uppercase; letter-spacing:1.1px; color:#7A92A8; font-weight:600; margin-bottom:6px; }
-.kpi-value { font-size:1.35rem; font-weight:700; }
+.kpi-strip { display:grid; grid-template-columns:repeat(6,1fr); gap:10px; margin-bottom:28px; }
+.kpi { background:var(--white); border:1px solid var(--border); border-radius:12px; padding:14px 10px;
+  text-align:center; box-shadow:0 1px 4px rgba(15,30,46,0.06); min-width:0; overflow:hidden; }
+.kpi-label { font-size:0.66rem; text-transform:uppercase; letter-spacing:1.1px; color:#7A92A8; font-weight:600; margin-bottom:6px;
+  white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+.kpi-value { font-size:clamp(0.95rem, 1.6vw, 1.35rem); font-weight:700; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; line-height:1.2; }
 .c-green{color:var(--green)} .c-sky{color:var(--sky)} .c-red{color:var(--red)} .c-navy{color:var(--navy)} .c-amber{color:var(--amber)}
 
 /* PROGRESS */
@@ -214,11 +243,15 @@ tfoot td { background:var(--ink); color:white; padding:11px 14px; font-size:0.84
 .quickpay-chip:hover { border-color:var(--sky); background:var(--mist); }
 .quickpay-chip.is-paid { background:var(--green-bg); border-color:var(--green); color:var(--green); }
 
+@media(max-width:900px){
+  .kpi-strip{grid-template-columns:repeat(3,1fr)}
+}
 @media(max-width:640px){
   .form-row,.form-row3{grid-template-columns:1fr}
   tbody td,thead th{padding:9px 8px}
   .header-title{font-size:1.6rem}
-  .kpi-value{font-size:1.15rem}
+  .kpi-strip{grid-template-columns:repeat(2,1fr)}
+  .kpi-value{font-size:clamp(0.85rem, 4vw, 1.1rem)}
   .cd-box{min-width:54px;padding:8px 10px}
   .cd-num{font-size:1.2rem}
 }
@@ -262,9 +295,24 @@ tfoot td { background:var(--ink); color:white; padding:11px 14px; font-size:0.84
     </svg>
     <div class="header-eyebrow">Organización Familiar</div>
     <h1 class="header-title">Viaje Reyes 2027</h1>
-    <p class="header-sub">Apulo · 9 al 11 de enero de 2027 · 2 noches · 3 días</p>
-    <div class="header-pill"><span class="dot"></span>Estado de pagos · Actualización en tiempo real</div>
-    <div class="countdown" id="countdown"></div>
+    <p class="header-sub">9 al 11 de enero de 2027 · 2 noches · 3 días</p>
+    <div class="header-pill"><span class="dot"></span>Estado de pagos · Consulta libre para toda la familia</div>
+    <div class="header-highlights">
+      <div class="countdown" id="countdown"></div>
+      <div class="highlight-divider"></div>
+      <div class="key-highlight">
+        <div class="key-highlight-icon">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="6" width="20" height="12" rx="2"/><path d="M2 10h20"/></svg>
+        </div>
+        <div class="key-highlight-text">
+          <div class="key-highlight-label">Llave Bre-B</div>
+          <div class="key-highlight-value" id="brebkey">1007392842</div>
+        </div>
+        <button class="key-highlight-copy" onclick="copiarLlave()" title="Copiar llave">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+        </button>
+      </div>
+    </div>
   </div>
 </header>
 
@@ -323,13 +371,23 @@ tfoot td { background:var(--ink); color:white; padding:11px 14px; font-size:0.84
 
   <div class="notice">
     <svg class="icon-inline" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="var(--green)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="9"/></svg>
-    <strong>Transparencia total.</strong> Todo el dinero recaudado se destina exclusivamente al viaje.
-    Cada gasto tiene soporte. Al finalizar se publicará el cierre financiero completo. Si el costo real
-    resulta menor al proyectado, la diferencia se devuelve o descuenta de la última cuota.
+    <strong>Transparencia total.</strong> Todo el dinero recaudado se destina exclusivamente al viaje, sin ningún ánimo de lucro.
+    Cada pago realizado estará respaldado por sus respectivas cotizaciones, contratos, comprobantes o facturas, los cuales se
+    compartirán con el grupo a medida que avance la organización.
+    <br><br>
+    <svg class="icon-inline" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="var(--sky)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="M18 17V9"/><path d="M13 17V5"/><path d="M8 17v-3"/></svg>
+    Al finalizar el proceso se presentará un <strong>balance detallado de ingresos y gastos</strong>. Si el costo definitivo
+    resulta inferior al presupuesto proyectado, la diferencia podrá descontarse de la última cuota o, si el recaudo ya estuviera
+    completo, se definirá con el grupo la forma de devolver ese excedente. La intención es recaudar únicamente lo necesario para
+    el viaje, manteniendo un margen razonable para imprevistos y evitando solicitar aportes adicionales más adelante.
     <br><br>
     <svg class="icon-inline" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="var(--sky)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 17.8 5.8 21l1.2-7L2 9.3l7-1L12 2l3 6.3 7 1-5 4.7 1.2 7Z"/></svg>
     <strong>Incluye:</strong> Hospedaje (2 noches) + Alimentación (3 días) + Contingencias.
     &nbsp;|&nbsp; <strong>No incluye:</strong> Transporte · Bebidas alcohólicas.
+    <br><br>
+    <svg class="icon-inline" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="var(--amber)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>
+    El compromiso de las fechas de pago es de cada familia. No se realizarán cobros individuales ni recordatorios
+    personalizados — el avance del proyecto depende del cumplimiento de todos. Cualquier duda, plantéala con tiempo en el grupo.
   </div>
 
 </main>
@@ -365,7 +423,7 @@ tfoot td { background:var(--ink); color:white; padding:11px 14px; font-size:0.84
         <div class="tabs">
           <button class="tab-btn active" onclick="switchTab('tab-pago',this)">Pago individual</button>
           <button class="tab-btn" onclick="switchTab('tab-pago-familia',this)">Pago por familia</button>
-          <button class="tab-btn" onclick="switchTab('tab-morosos',this)">Mora</button>
+          <button class="tab-btn" onclick="switchTab('tab-morosos',this)">Seguimiento</button>
           <button class="tab-btn" onclick="switchTab('tab-historial',this)">Historial</button>
           <button class="tab-btn" onclick="switchTab('tab-personas',this)">Personas</button>
           <button class="tab-btn" onclick="switchTab('tab-config',this)">Config</button>
@@ -443,7 +501,9 @@ tfoot td { background:var(--ink); color:white; padding:11px 14px; font-size:0.84
 
         <!-- MORA -->
         <div class="tab-pane" id="tab-morosos">
-          <p style="font-size:0.82rem;color:var(--steel);margin-bottom:10px">Personas ordenadas por mayor mora.</p>
+          <p style="font-size:0.82rem;color:var(--steel);margin-bottom:10px">
+            Seguimiento interno por cuotas atrasadas según calendario. Uso exclusivo del organizador — recuerda que el compromiso es de cada familia, sin cobros individuales.
+          </p>
           <div class="card" style="margin-bottom:0"><div id="morosos-list"></div></div>
         </div>
 
@@ -518,44 +578,44 @@ tfoot td { background:var(--ink); color:white; padding:11px 14px; font-size:0.84
 <script>
 // ═══════════════════════════════ DATA ═══════════════════════════════
 const PERSONAS_DEFAULT = [
-  {id:1,nombre:"David",nucleo:"Familia 1",tipo:"paga",nota:""},
-  {id:2,nombre:"Jakeline",nucleo:"Familia 1",tipo:"paga",nota:""},
-  {id:3,nombre:"Juan David",nucleo:"Familia 1",tipo:"paga",nota:""},
-  {id:4,nombre:"Rubén",nucleo:"Familia 2",tipo:"paga",nota:""},
-  {id:5,nombre:"Lida",nucleo:"Familia 2",tipo:"paga",nota:""},
-  {id:6,nombre:"Lucía",nucleo:"Familia 2",tipo:"paga",nota:""},
-  {id:7,nombre:"Camilo",nucleo:"Familia 3",tipo:"paga",nota:""},
-  {id:8,nombre:"Valentina R",nucleo:"Familia 3",tipo:"paga",nota:""},
-  {id:9,nombre:"Nelba",nucleo:"Familia 4",tipo:"paga",nota:""},
-  {id:10,nombre:"Cesar",nucleo:"Familia 4",tipo:"paga",nota:""},
-  {id:11,nombre:"Alejandra",nucleo:"Familia 4",tipo:"paga",nota:""},
-  {id:12,nombre:"Rubiela",nucleo:"Familia 5",tipo:"paga",nota:""},
-  {id:13,nombre:"Leonardo",nucleo:"Familia 5",tipo:"paga",nota:""},
-  {id:14,nombre:"Yesica",nucleo:"Familia 5",tipo:"paga",nota:""},
-  {id:15,nombre:"Laura G",nucleo:"Familia 5",tipo:"paga",nota:""},
-  {id:16,nombre:"Constanza",nucleo:"Familia 6",tipo:"paga",nota:""},
-  {id:17,nombre:"Lorena",nucleo:"Familia 6",tipo:"paga",nota:""},
-  {id:18,nombre:"Jerónimo",nucleo:"Familia 6",tipo:"paga",nota:""},
-  {id:19,nombre:"Dario",nucleo:"Familia 7",tipo:"paga",nota:""},
-  {id:20,nombre:"Gina",nucleo:"Familia 7",tipo:"paga",nota:""},
-  {id:21,nombre:"Cristóbal",nucleo:"Familia 7",tipo:"gratis",nota:""},
-  {id:22,nombre:"Verónica",nucleo:"Familia 7",tipo:"gratis",nota:""},
-  {id:23,nombre:"Johan",nucleo:"Familia 8",tipo:"paga",nota:""},
-  {id:24,nombre:"Viviana",nucleo:"Familia 8",tipo:"paga",nota:""},
-  {id:25,nombre:"Valentina A",nucleo:"Familia 8",tipo:"paga",nota:""},
-  {id:26,nombre:"Antonella",nucleo:"Familia 8",tipo:"gratis",nota:""},
-  {id:27,nombre:"Marcelo",nucleo:"Familia 9",tipo:"paga",nota:""},
-  {id:28,nombre:"Claudia",nucleo:"Familia 9",tipo:"paga",nota:""},
-  {id:29,nombre:"Pablo",nucleo:"Familia 9",tipo:"paga",nota:""},
-  {id:30,nombre:"Hernando",nucleo:"Familia 10",tipo:"paga",nota:""},
-  {id:31,nombre:"Maribel",nucleo:"Familia 10",tipo:"paga",nota:""},
-  {id:32,nombre:"Álvaro",nucleo:"Familia 11",tipo:"paga",nota:""},
-  {id:33,nombre:"Néstor",nucleo:"Familia 11",tipo:"paga",nota:""},
-  {id:34,nombre:"Jhonatan",nucleo:"Familia 11",tipo:"paga",nota:""},
-  {id:35,nombre:"Jenny",nucleo:"Familia 11",tipo:"paga",nota:""},
-  {id:36,nombre:"Cristian",nucleo:"Familia 12",tipo:"paga",nota:""},
-  {id:37,nombre:"Angela R",nucleo:"Familia 12",tipo:"paga",nota:""},
-  {id:38,nombre:"Isabella",nucleo:"Familia 12",tipo:"paga",nota:""},
+  {id:1,nombre:"David Saavedra",nucleo:"Familia Saavedra Martinez",tipo:"paga",nota:""},
+  {id:2,nombre:"Jakeline Martinez",nucleo:"Familia Saavedra Martinez",tipo:"paga",nota:""},
+  {id:3,nombre:"Juan David Saavedra",nucleo:"Familia Saavedra Martinez",tipo:"paga",nota:""},
+  {id:4,nombre:"Rubén Rey",nucleo:"Familia Rey Guanumen",tipo:"paga",nota:""},
+  {id:5,nombre:"Lida Guanumen",nucleo:"Familia Rey Guanumen",tipo:"paga",nota:""},
+  {id:6,nombre:"Lucía Rey",nucleo:"Familia Rey Guanumen",tipo:"paga",nota:""},
+  {id:7,nombre:"Camilo Rey",nucleo:"Familia Rey Guanumen",tipo:"paga",nota:""},
+  {id:8,nombre:"Valentina Riaño",nucleo:"Valentina Riaño",tipo:"paga",nota:""},
+  {id:9,nombre:"Nelba Riaño",nucleo:"Familia Huerfano Riaño",tipo:"paga",nota:""},
+  {id:10,nombre:"Cesar Huerfano",nucleo:"Familia Huerfano Riaño",tipo:"paga",nota:""},
+  {id:11,nombre:"Alejandra Saavedra",nucleo:"Familia Saavedra Riaño",tipo:"paga",nota:""},
+  {id:12,nombre:"Rubiela Riaño",nucleo:"Familia Saavedra Riaño",tipo:"paga",nota:""},
+  {id:13,nombre:"Leonardo Riaño",nucleo:"Familia Riaño Rojas",tipo:"paga",nota:""},
+  {id:14,nombre:"Yesica Rojas",nucleo:"Familia Riaño Rojas",tipo:"paga",nota:""},
+  {id:15,nombre:"Laura Granados",nucleo:"Familia Granados Guanumen",tipo:"paga",nota:""},
+  {id:16,nombre:"Constanza Guanumen",nucleo:"Familia Granados Guanumen",tipo:"paga",nota:""},
+  {id:17,nombre:"Lorena Riaño",nucleo:"Familia Lorena Riaño",tipo:"paga",nota:""},
+  {id:18,nombre:"Jerónimo",nucleo:"Familia Lorena Riaño",tipo:"paga",nota:""},
+  {id:19,nombre:"Dario Leal",nucleo:"Familia Leal Huerfano",tipo:"paga",nota:""},
+  {id:20,nombre:"Gina Huerfano",nucleo:"Familia Leal Huerfano",tipo:"paga",nota:""},
+  {id:21,nombre:"Cristóbal Leal",nucleo:"Familia Leal Huerfano",tipo:"gratis",nota:""},
+  {id:22,nombre:"Verónica Leal",nucleo:"Familia Leal Huerfano",tipo:"gratis",nota:""},
+  {id:23,nombre:"Johan Huerfano",nucleo:"Familia Huerfano Jimenez",tipo:"paga",nota:""},
+  {id:24,nombre:"Viviana Jimenez",nucleo:"Familia Huerfano Jimenez",tipo:"paga",nota:""},
+  {id:25,nombre:"Valentina Amado",nucleo:"Familia Huerfano Jimenez",tipo:"paga",nota:""},
+  {id:26,nombre:"Antonella Huerfano",nucleo:"Familia Huerfano Jimenez",tipo:"gratis",nota:""},
+  {id:27,nombre:"Marcelo Guanumen",nucleo:"Familia Guanumen Tinjaca",tipo:"paga",nota:""},
+  {id:28,nombre:"Claudia Tinjaca",nucleo:"Familia Guanumen Tinjaca",tipo:"paga",nota:""},
+  {id:29,nombre:"Pablo Guanumen",nucleo:"Familia Guanumen Tinjaca",tipo:"paga",nota:""},
+  {id:30,nombre:"Hernando Riaño",nucleo:"Familia Riaño Vega",tipo:"paga",nota:""},
+  {id:31,nombre:"Maribel Vega",nucleo:"Familia Riaño Vega",tipo:"paga",nota:""},
+  {id:32,nombre:"Álvaro Riaño",nucleo:"Álvaro Riaño",tipo:"paga",nota:""},
+  {id:33,nombre:"Néstor Guanumen",nucleo:"Néstor Guanumen",tipo:"paga",nota:""},
+  {id:34,nombre:"Johnatan Guanumen",nucleo:"Familia Guanumen Ramirez",tipo:"paga",nota:""},
+  {id:35,nombre:"Jenny Ramirez",nucleo:"Familia Guanumen Ramirez",tipo:"paga",nota:""},
+  {id:36,nombre:"Cristian Riaño",nucleo:"Cristian Riaño",tipo:"paga",nota:""},
+  {id:37,nombre:"Angela Riaño",nucleo:"Familia Angela Riaño",tipo:"paga",nota:""},
+  {id:38,nombre:"Isabella",nucleo:"Familia Angela Riaño",tipo:"paga",nota:""},
 ];
 
 const CUOTAS_DEF = [
@@ -608,7 +668,6 @@ function estadoPersona(p){
   return {label:"Parcial",cls:"badge-parcial"};
 }
 function cuotasAtrasadas(p){
-  // counts how many cuotas with past due date are unpaid
   const today = new Date();
   let n=0;
   CUOTAS_DEF.forEach(c=>{
@@ -617,6 +676,17 @@ function cuotasAtrasadas(p){
   return n;
 }
 function fmt(n){ return "$"+Math.round(n).toLocaleString("es-CO"); }
+function fmtCompact(n){
+  const sign = n<0 ? "-" : "";
+  const abs = Math.abs(n);
+  if(abs >= 1000000){
+    return sign+"$"+(abs/1000000).toFixed(2).replace(/\.00$/,"").replace(/(\.\d)0$/,"$1")+"M";
+  }
+  if(abs >= 1000){
+    return sign+"$"+Math.round(abs/1000).toLocaleString("es-CO")+"K";
+  }
+  return sign+fmt(abs);
+}
 
 // ═══════════════════════════════ COUNTDOWN ═══════════════════════════════
 function renderCountdown(){
@@ -655,9 +725,12 @@ function renderKPIs(){
   const aldia = pagan().filter(p=>pagadoPorPersona(p.id)>=TOTAL_PP).length;
   const npend = pagan().filter(p=>pagadoPorPersona(p.id)<TOTAL_PP).length;
   document.getElementById("kpi-total").textContent = personas.length;
-  document.getElementById("kpi-presupuesto").textContent = fmt(presup);
-  document.getElementById("kpi-recaudado").textContent = fmt(rec);
-  document.getElementById("kpi-pendiente").textContent = fmt(presup-rec);
+  document.getElementById("kpi-presupuesto").textContent = fmtCompact(presup);
+  document.getElementById("kpi-presupuesto").title = fmt(presup);
+  document.getElementById("kpi-recaudado").textContent = fmtCompact(rec);
+  document.getElementById("kpi-recaudado").title = fmt(rec);
+  document.getElementById("kpi-pendiente").textContent = fmtCompact(presup-rec);
+  document.getElementById("kpi-pendiente").title = fmt(presup-rec);
   document.getElementById("kpi-aldia").textContent = aldia;
   document.getElementById("kpi-npendientes").textContent = npend;
   document.getElementById("pct-label").textContent = (pct*100).toFixed(1)+"%";
@@ -788,7 +861,6 @@ function populateSelects(){
   if(qsel.options.length) renderQuickpay();
   if(famsel.options.length) renderFamSplit();
 
-  // familias datalist for edit modal
   const dl = document.getElementById("familias-datalist"); dl.innerHTML="";
   [...new Set(personas.map(p=>p.nucleo))].forEach(n=>{ dl.innerHTML+=`<option value="${n}">`; });
 }
@@ -1019,6 +1091,15 @@ function switchTab(id,btn){
   if(id==="tab-morosos") renderMorosos();
   if(id==="tab-personas") renderPersonasEdit();
 }
+function copiarLlave(){
+  const key = document.getElementById("brebkey").textContent;
+  navigator.clipboard.writeText(key).then(()=>{
+    toast("Llave Bre-B copiada","ok");
+  }).catch(()=>{
+    toast("No se pudo copiar. Llave: "+key,"err");
+  });
+}
+
 function toast(msg,type="ok"){
   const t=document.getElementById("toast");
   const icon = type==="ok"
