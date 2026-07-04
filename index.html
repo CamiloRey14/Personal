@@ -248,12 +248,36 @@ tfoot td { background:var(--ink); color:white; padding:11px 14px; font-size:0.84
 }
 @media(max-width:640px){
   .form-row,.form-row3{grid-template-columns:1fr}
-  tbody td,thead th{padding:9px 8px}
   .header-title{font-size:1.6rem}
   .kpi-strip{grid-template-columns:repeat(2,1fr)}
   .kpi-value{font-size:clamp(0.85rem, 4vw, 1.1rem)}
   .cd-box{min-width:54px;padding:8px 10px}
   .cd-num{font-size:1.2rem}
+
+  /* ── Tablas → tarjetas en móvil ── */
+  .card table, .card table thead { display:block; }
+  .card table thead { display:none; }
+  .card table tbody { display:flex; flex-direction:column; gap:0; }
+  .card table tbody tr {
+    display:grid; grid-template-columns:1fr 1fr;
+    gap:2px 10px; padding:12px 14px;
+    border-bottom:1px solid var(--border);
+  }
+  .card table tbody tr:last-child { border-bottom:none; }
+  .card table tbody td {
+    display:flex; flex-direction:column; text-align:left;
+    padding:0; font-size:0.8rem;
+  }
+  .card table tbody td::before {
+    content:attr(data-label);
+    font-size:0.62rem; text-transform:uppercase; letter-spacing:0.8px;
+    font-weight:700; color:#7A92A8; margin-bottom:2px;
+  }
+  /* Columnas que ocupan todo el ancho */
+  .card table tbody td.full { grid-column:1/-1; }
+  .card table tfoot { display:block; }
+  .card table tfoot tr { display:flex; flex-wrap:wrap; gap:8px; padding:10px 14px; }
+  .card table tfoot td { padding:0; font-size:0.8rem; }
 }
 
 .site-footer { text-align:center; padding:30px 16px; font-size:0.76rem; color:#9EB3C8; line-height:1.8; }
@@ -748,8 +772,14 @@ function renderCuotas(){
     if(rec>=esp) badge=`<span class="badge badge-aldia">Completa <svg class="icon-inline" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span>`;
     else if(rec>0) badge=`<span class="badge badge-parcial">En curso ${(pct*100).toFixed(0)}%</span>`;
     else badge=`<span class="badge badge-pendiente">Pendiente</span>`;
-    tbody.innerHTML+=`<tr><td><strong>${c.label}</strong></td><td>${c.fecha}</td><td>${fmt(c.valor)}</td>
-      <td>${fmt(esp)}</td><td style="color:var(--green);font-weight:600">${fmt(rec)}</td><td>${badge}</td></tr>`;
+    tbody.innerHTML+=`<tr>
+      <td data-label="Cuota"><strong>${c.label}</strong></td>
+      <td data-label="Fecha">${c.fecha}</td>
+      <td data-label="Valor">${fmt(c.valor)}</td>
+      <td data-label="Total esperado">${fmt(esp)}</td>
+      <td data-label="Recaudado" style="color:var(--green);font-weight:600">${fmt(rec)}</td>
+      <td data-label="Estado" class="full">${badge}</td>
+    </tr>`;
   });
   tfoot.innerHTML=`<tr><td colspan="3">TOTAL</td><td>${fmt(totEsp)}</td><td>${fmt(totRec)}</td><td>${fmt(totEsp-totRec)} pendiente</td></tr>`;
 }
@@ -762,14 +792,16 @@ function renderPersonas(){
     let dots="";
     if(p.tipo==="paga"){ CUOTAS_DEF.forEach(c=>{ const pc=pagadoCuota(p.id,c.num); const ok=pc>=c.valor;
       dots+=`<div class="cdot ${ok?'paid':'unpaid'}" title="${c.label}: ${fmt(pc)}/${fmt(c.valor)}"></div>`; }); }
-    tbody.innerHTML+=`<tr><td style="color:var(--steel);font-size:0.78rem">${idx++}</td>
-      <td style="font-weight:600;text-align:left">${p.nombre}</td>
-      <td style="text-align:left;color:#7A92A8;font-size:0.8rem">${p.nucleo}</td>
-      <td>${p.tipo==="gratis"?"—":fmt(esp)}</td>
-      <td style="color:var(--green);font-weight:600">${p.tipo==="gratis"?"—":fmt(pag)}</td>
-      <td style="color:${sal>0?'var(--red)':'var(--green)'};font-weight:600">${p.tipo==="gratis"?"—":fmt(sal)}</td>
-      <td><div class="cuota-dots">${dots||"—"}</div></td>
-      <td><span class="badge ${est.cls}">${est.label}</span></td></tr>`;
+    tbody.innerHTML+=`<tr>
+      <td data-label="#" style="color:var(--steel);font-size:0.78rem">${idx++}</td>
+      <td data-label="Nombre" style="font-weight:600;text-align:left">${p.nombre}</td>
+      <td data-label="Familia" class="full" style="text-align:left;color:#7A92A8;font-size:0.8rem">${p.nucleo}</td>
+      <td data-label="Esperado">${p.tipo==="gratis"?"—":fmt(esp)}</td>
+      <td data-label="Pagado" style="color:var(--green);font-weight:600">${p.tipo==="gratis"?"—":fmt(pag)}</td>
+      <td data-label="Saldo" style="color:${sal>0?'var(--red)':'var(--green)'};font-weight:600">${p.tipo==="gratis"?"—":fmt(sal)}</td>
+      <td data-label="Cuotas" class="full"><div class="cuota-dots">${dots||"—"}</div></td>
+      <td data-label="Estado" class="full"><span class="badge ${est.cls}">${est.label}</span></td>
+    </tr>`;
   });
 }
 
