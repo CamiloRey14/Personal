@@ -45,38 +45,65 @@ body { font-family:'Plus Jakarta Sans',system-ui,sans-serif; background:var(--pa
 @keyframes pulse{0%,100%{opacity:1}50%{opacity:0.4}}
 
 /* COUNTDOWN */
-.countdown { display:flex; gap:10px; justify-content:center; flex-wrap:wrap; }
-.cd-box { background:rgba(255,255,255,0.08); border:1px solid rgba(255,255,255,0.15);
-  border-radius:10px; padding:10px 14px; min-width:64px; text-align:center; }
-.cd-num { font-size:1.5rem; font-weight:700; color:var(--white); line-height:1; }
-.cd-lbl { font-size:0.62rem; text-transform:uppercase; letter-spacing:1px; color:rgba(255,255,255,0.55); margin-top:4px; }
+.countdown { display:flex; gap:8px; justify-content:center; flex-wrap:wrap; }
+.cd-box { text-align:center; padding:4px 6px; min-width:52px; }
+.cd-num { font-family:'Playfair Display',serif; font-size:2.2rem; font-weight:600; color:var(--white); line-height:1; }
+.cd-lbl { font-size:0.58rem; text-transform:uppercase; letter-spacing:1.2px; color:rgba(255,255,255,0.45); margin-top:3px; }
+.cd-sep { color:rgba(255,255,255,0.25); font-size:1.8rem; font-weight:300; line-height:1; padding-top:4px; align-self:flex-start; }
 
-/* HEADER HIGHLIGHTS (countdown + payment key) */
-.header-highlights {
-  display:flex; gap:14px; justify-content:center; align-items:stretch; flex-wrap:wrap;
-  padding-bottom:34px; max-width:640px; margin:0 auto;
+/* HEADER STAT BLOCKS */
+.header-stats {
+  display:grid; grid-template-columns:1fr 1fr;
+  gap:12px; max-width:680px; margin:0 auto; padding-bottom:36px;
 }
-.highlight-divider { width:1px; background:rgba(255,255,255,0.15); align-self:stretch; }
-.key-highlight {
-  display:flex; align-items:center; gap:12px; background:rgba(255,255,255,0.08);
-  border:1px solid rgba(255,255,255,0.15); border-radius:10px; padding:10px 18px;
+.hstat {
+  background:rgba(255,255,255,0.07); border:1px solid rgba(255,255,255,0.13);
+  border-radius:16px; padding:20px 22px; text-align:left; position:relative; overflow:hidden;
 }
-.key-highlight-icon {
-  width:34px; height:34px; border-radius:8px; background:rgba(255,255,255,0.1);
-  display:flex; align-items:center; justify-content:center; color:var(--sky); flex-shrink:0;
+.hstat::before {
+  content:''; position:absolute; top:0; right:0;
+  width:80px; height:80px; border-radius:0 16px 0 80px;
+  background:rgba(255,255,255,0.04);
 }
-.key-highlight-text { text-align:left; }
-.key-highlight-label { font-size:0.62rem; text-transform:uppercase; letter-spacing:1px; color:rgba(255,255,255,0.55); margin-bottom:2px; }
-.key-highlight-value { font-size:1rem; font-weight:700; color:var(--white); letter-spacing:0.3px; }
-.key-highlight-copy {
-  background:rgba(255,255,255,0.12); border:none; border-radius:7px; width:30px; height:30px;
-  display:flex; align-items:center; justify-content:center; color:rgba(255,255,255,0.85); cursor:pointer;
-  transition:background .15s; flex-shrink:0;
+.hstat-label {
+  font-size:0.62rem; text-transform:uppercase; letter-spacing:1.5px;
+  color:rgba(255,255,255,0.45); font-weight:600; margin-bottom:10px;
+  display:flex; align-items:center; gap:6px;
 }
-.key-highlight-copy:hover { background:rgba(255,255,255,0.22); }
-@media (max-width:560px){
-  .header-highlights { flex-direction:column; align-items:center; }
-  .highlight-divider { display:none; }
+.hstat-label svg { flex-shrink:0; }
+.hstat-main { display:flex; align-items:baseline; gap:6px; margin-bottom:10px; }
+.hstat-countdown { display:flex; gap:10px; align-items:flex-end; }
+.hstat-cd-unit { text-align:center; }
+.hstat-cd-num { font-family:'Plus Jakarta Sans',sans-serif; font-size:2.4rem; font-weight:800; color:var(--white); line-height:1; display:block; }
+.hstat-cd-lbl { font-size:0.56rem; text-transform:uppercase; letter-spacing:1px; color:rgba(255,255,255,0.4); display:block; margin-top:3px; }
+.hstat-cd-sep { color:rgba(255,255,255,0.2); font-size:2rem; line-height:1.1; padding-bottom:6px; }
+.hstat-pct { font-family:'Plus Jakarta Sans',sans-serif; font-size:2.8rem; font-weight:800; color:var(--white); line-height:1; }
+.hstat-pct-sub { font-size:0.78rem; color:rgba(255,255,255,0.55); margin-top:2px; }
+.hstat-bar { height:5px; background:rgba(255,255,255,0.12); border-radius:3px; overflow:hidden; }
+.hstat-bar-fill { height:100%; border-radius:3px; background:linear-gradient(90deg, #4ade80, #22c55e); transition:width 1.2s cubic-bezier(.4,0,.2,1); width:0%; }
+
+/* LLAVE BRE-B — sección independiente debajo del header */
+.breb-bar {
+  background:var(--navy); border-bottom:1px solid rgba(255,255,255,0.08);
+  padding:14px 20px; display:flex; align-items:center; justify-content:center; gap:16px; flex-wrap:wrap;
+}
+.breb-label { font-size:0.68rem; text-transform:uppercase; letter-spacing:1.2px; color:rgba(255,255,255,0.5); font-weight:600; }
+.breb-value { font-size:1.1rem; font-weight:700; color:var(--white); letter-spacing:1px; font-family:'Plus Jakarta Sans',sans-serif; }
+.breb-sep { width:1px; height:22px; background:rgba(255,255,255,0.15); }
+.breb-btn {
+  display:flex; align-items:center; gap:7px; background:rgba(255,255,255,0.1);
+  border:1px solid rgba(255,255,255,0.2); border-radius:8px; padding:7px 14px;
+  color:rgba(255,255,255,0.9); font-size:0.78rem; font-weight:600; cursor:pointer;
+  font-family:inherit; transition:background .15s;
+}
+.breb-btn:hover { background:rgba(255,255,255,0.18); }
+
+@media(max-width:560px){
+  .header-stats { grid-template-columns:1fr; }
+  .hstat-cd-num { font-size:1.9rem; }
+  .hstat-pct { font-size:2.2rem; }
+  .breb-bar { gap:10px; }
+  .breb-sep { display:none; }
 }
 
 .page { max-width:960px; margin:0 auto; padding:28px 16px 60px; }
@@ -98,14 +125,6 @@ body { font-family:'Plus Jakarta Sans',system-ui,sans-serif; background:var(--pa
   white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
 .kpi-value { font-size:clamp(0.95rem, 1.6vw, 1.35rem); font-weight:700; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; line-height:1.2; }
 .c-green{color:var(--green)} .c-sky{color:var(--sky)} .c-red{color:var(--red)} .c-navy{color:var(--navy)} .c-amber{color:var(--amber)}
-
-/* PROGRESS */
-.progress-card { background:var(--white); border:1px solid var(--border); border-radius:12px;
-  padding:20px 22px; margin-bottom:26px; box-shadow:0 1px 4px rgba(15,30,46,0.06); }
-.progress-header { display:flex; justify-content:space-between; align-items:center; margin-bottom:10px; }
-.progress-header span { font-size:0.8rem; font-weight:600; color:var(--navy); }
-.progress-bar { height:10px; background:var(--mist); border-radius:6px; overflow:hidden; }
-.progress-fill { height:100%; border-radius:6px; background:linear-gradient(90deg,var(--sky),var(--green)); transition:width 1s cubic-bezier(.4,0,.2,1); }
 
 /* NEXT CUOTA BANNER */
 .next-cuota { background:linear-gradient(135deg, var(--mist), var(--blue-bg)); border:1px solid var(--border);
@@ -130,7 +149,7 @@ tbody tr:last-child{border-bottom:none}
 tbody tr:nth-child(even){background:var(--paper)}
 tbody tr:hover{background:var(--mist); transition:background .15s}
 tbody td { padding:11px 14px; font-size:0.84rem; text-align:center; }
-tfoot td { background:var(--ink); color:white; padding:11px 14px; font-size:0.84rem; text-align:center; font-weight:700; }
+tfoot td { background:#1A3A5C; color:rgba(255,255,255,0.9); padding:12px 14px; font-size:0.82rem; text-align:center; font-weight:600; border-top:none; }
 
 .badge { display:inline-block; border-radius:20px; padding:3px 11px; font-size:0.7rem; font-weight:700; letter-spacing:0.3px; }
 .badge-aldia{background:var(--green-bg);color:var(--green)}
@@ -321,24 +340,40 @@ tfoot td { background:var(--ink); color:white; padding:11px 14px; font-size:0.84
     <h1 class="header-title">Viaje Reyes 2027</h1>
     <p class="header-sub">9 al 11 de enero de 2027 · 2 noches · 3 días</p>
     <div class="header-pill"><span class="dot"></span>Estado de pagos · Consulta libre para toda la familia</div>
-    <div class="header-highlights">
-      <div class="countdown" id="countdown"></div>
-      <div class="highlight-divider"></div>
-      <div class="key-highlight">
-        <div class="key-highlight-icon">
-          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="6" width="20" height="12" rx="2"/><path d="M2 10h20"/></svg>
+    <div class="header-stats">
+      <!-- Bloque 1: Cuenta regresiva -->
+      <div class="hstat">
+        <div class="hstat-label">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>
+          Faltan
         </div>
-        <div class="key-highlight-text">
-          <div class="key-highlight-label">Llave Bre-B</div>
-          <div class="key-highlight-value" id="brebkey">1007392842</div>
+        <div class="hstat-countdown" id="countdown"></div>
+      </div>
+      <!-- Bloque 2: % de recaudo -->
+      <div class="hstat">
+        <div class="hstat-label">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="M7 14l4-4 3 3 5-6"/></svg>
+          Recaudo
         </div>
-        <button class="key-highlight-copy" onclick="copiarLlave()" title="Copiar llave">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
-        </button>
+        <div class="hstat-pct" id="header-pct">0%</div>
+        <div class="hstat-pct-sub" id="header-rec">$0 de $0</div>
+        <div class="hstat-bar" style="margin-top:10px"><div class="hstat-bar-fill" id="header-bar"></div></div>
       </div>
     </div>
   </div>
 </header>
+
+<!-- LLAVE BRE-B -->
+<div class="breb-bar">
+  <span class="breb-label">Consignaciones</span>
+  <div class="breb-sep"></div>
+  <span class="breb-label">Llave Bre-B</span>
+  <span class="breb-value" id="brebkey">1007392842</span>
+  <button class="breb-btn" onclick="copiarLlave()">
+    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+    Copiar llave
+  </button>
+</div>
 
 <main class="page">
 
@@ -356,10 +391,6 @@ tfoot td { background:var(--ink); color:white; padding:11px 14px; font-size:0.84
     <div class="kpi"><div class="kpi-label">En mora</div><div class="kpi-value c-amber" id="kpi-npendientes">35</div></div>
   </div>
 
-  <div class="progress-card">
-    <div class="progress-header"><span><svg class="icon-inline" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="M18 17V9"/><path d="M13 17V5"/><path d="M8 17v-3"/></svg> Progreso de recaudo</span><span id="pct-label" style="color:var(--sky);font-weight:700">0%</span></div>
-    <div class="progress-bar"><div class="progress-fill" id="progress-fill" style="width:0%"></div></div>
-  </div>
 
   <div class="next-cuota" id="next-cuota-box"></div>
 
@@ -395,7 +426,7 @@ tfoot td { background:var(--ink); color:white; padding:11px 14px; font-size:0.84
 
   <div class="notice">
     <svg class="icon-inline" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="var(--green)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="9"/></svg>
-    <strong>Transparencia total.</strong> Todo el dinero recaudado se destina exclusivamente al viaje, sin ningún ánimo de lucro.
+    <strong>Transparencia.</strong> Todo el dinero recaudado se destina exclusivamente al viaje, sin ningún ánimo de lucro.
     Cada pago realizado estará respaldado por sus respectivas cotizaciones, contratos, comprobantes o facturas, los cuales se
     compartirán con el grupo a medida que avance la organización.
     <br><br>
@@ -411,13 +442,13 @@ tfoot td { background:var(--ink); color:white; padding:11px 14px; font-size:0.84
     <br><br>
     <svg class="icon-inline" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="var(--amber)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>
     El compromiso de las fechas de pago es de cada familia. No se realizarán cobros individuales ni recordatorios
-    personalizados — el avance del proyecto depende del cumplimiento de todos. Cualquier duda, plantéala con tiempo en el grupo.
+    personalizados el avance del proyecto depende del cumplimiento de todos. Cualquier duda, plantéala con tiempo en el grupo.
   </div>
 
 </main>
 
 <footer class="site-footer">
-  Organizado por <strong>Camilo</strong> · Viaje Familiar Reyes 2027<br>
+  Organizado por <strong>Camilo Rey</strong> · Viaje Familiar Reyes 2027<br>
   Última actualización: <strong id="last-update">—</strong>
 </footer>
 
@@ -717,14 +748,19 @@ function renderCountdown(){
   const now = new Date();
   const diff = VIAJE_FECHA - now;
   const box = document.getElementById("countdown");
-  if(diff<=0){ box.innerHTML = `<div class="cd-box"><div class="cd-num"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5.8 11.3 2 22l10.7-3.8"/><path d="m4 3 3 3"/><path d="m12 7-1.8 1.8"/><path d="M18 5l-1.5 1.5"/><path d="M22 9l-1.5 1.5"/><path d="M9.5 14.5 14 10"/><path d="M19.4 5.8c1.1 1.1 1.1 3 0 4.1l-7.5 7.5-4.1-4.1 7.5-7.5c1.1-1.1 3-1.1 4.1 0Z"/></svg></div><div class="cd-lbl">¡Es hoy!</div></div>`; return; }
+  if(diff<=0){
+    box.innerHTML = `<div class="hstat-cd-unit"><span class="hstat-cd-num">¡Ya!</span><span class="hstat-cd-lbl">Es hoy</span></div>`;
+    return;
+  }
   const d = Math.floor(diff/(1000*60*60*24));
   const h = Math.floor((diff/(1000*60*60))%24);
   const m = Math.floor((diff/(1000*60))%60);
   box.innerHTML = `
-    <div class="cd-box"><div class="cd-num">${d}</div><div class="cd-lbl">Días</div></div>
-    <div class="cd-box"><div class="cd-num">${h}</div><div class="cd-lbl">Horas</div></div>
-    <div class="cd-box"><div class="cd-num">${m}</div><div class="cd-lbl">Min</div></div>`;
+    <div class="hstat-cd-unit"><span class="hstat-cd-num">${d}</span><span class="hstat-cd-lbl">Días</span></div>
+    <span class="hstat-cd-sep">:</span>
+    <div class="hstat-cd-unit"><span class="hstat-cd-num">${String(h).padStart(2,'0')}</span><span class="hstat-cd-lbl">Horas</span></div>
+    <span class="hstat-cd-sep">:</span>
+    <div class="hstat-cd-unit"><span class="hstat-cd-num">${String(m).padStart(2,'0')}</span><span class="hstat-cd-lbl">Min</span></div>`;
 }
 
 // ═══════════════════════════════ NEXT CUOTA ═══════════════════════════════
@@ -757,8 +793,10 @@ function renderKPIs(){
   document.getElementById("kpi-pendiente").title = fmt(presup-rec);
   document.getElementById("kpi-aldia").textContent = aldia;
   document.getElementById("kpi-npendientes").textContent = npend;
-  document.getElementById("pct-label").textContent = (pct*100).toFixed(1)+"%";
-  document.getElementById("progress-fill").style.width = Math.min(pct*100,100)+"%";
+  // Header stat block — recaudo
+  document.getElementById("header-pct").textContent = (pct*100).toFixed(1)+"%";
+  document.getElementById("header-rec").textContent = fmtCompact(rec)+" de "+fmtCompact(presup);
+  document.getElementById("header-bar").style.width = Math.min(pct*100,100)+"%";
   const upd = localStorage.getItem(LS_UPD);
   document.getElementById("last-update").textContent = upd ? new Date(upd).toLocaleDateString("es-CO",{year:"numeric",month:"long",day:"numeric"}) : "Sin actualizaciones aún";
 }
@@ -781,7 +819,7 @@ function renderCuotas(){
       <td data-label="Estado" class="full">${badge}</td>
     </tr>`;
   });
-  tfoot.innerHTML=`<tr><td colspan="3">TOTAL</td><td>${fmt(totEsp)}</td><td>${fmt(totRec)}</td><td>${fmt(totEsp-totRec)} pendiente</td></tr>`;
+  tfoot.innerHTML=``;
 }
 
 function renderPersonas(){
