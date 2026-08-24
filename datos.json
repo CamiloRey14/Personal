@@ -1,0 +1,353 @@
+{
+  "exportado": "2026-08-18T17:46:55.779Z",
+  "version": "2.0",
+  "personas": [
+    {
+      "id": 4,
+      "nombre": "Rubén Rey",
+      "nucleo": "Familia Rey Guanumen",
+      "tipo": "paga",
+      "nota": ""
+    },
+    {
+      "id": 5,
+      "nombre": "Lida Guanumen",
+      "nucleo": "Familia Rey Guanumen",
+      "tipo": "paga",
+      "nota": ""
+    },
+    {
+      "id": 6,
+      "nombre": "Lucía Rey",
+      "nucleo": "Familia Rey Guanumen",
+      "tipo": "paga",
+      "nota": ""
+    },
+    {
+      "id": 7,
+      "nombre": "Camilo Rey",
+      "nucleo": "Familia Rey Guanumen",
+      "tipo": "paga",
+      "nota": ""
+    },
+    {
+      "id": 8,
+      "nombre": "Valentina Riaño",
+      "nucleo": "Valentina Riaño",
+      "tipo": "paga",
+      "nota": ""
+    },
+    {
+      "id": 11,
+      "nombre": "Alejandra Saavedra",
+      "nucleo": "Familia Saavedra Riaño",
+      "tipo": "paga",
+      "nota": ""
+    },
+    {
+      "id": 12,
+      "nombre": "Rubiela Riaño",
+      "nucleo": "Familia Saavedra Riaño",
+      "tipo": "paga",
+      "nota": ""
+    },
+    {
+      "id": 15,
+      "nombre": "Laura Granados",
+      "nucleo": "Familia Granados Guanumen",
+      "tipo": "paga",
+      "nota": ""
+    },
+    {
+      "id": 16,
+      "nombre": "Constanza Guanumen",
+      "nucleo": "Familia Granados Guanumen",
+      "tipo": "paga",
+      "nota": ""
+    },
+    {
+      "id": 17,
+      "nombre": "Lorena Riaño",
+      "nucleo": "Familia Lorena Riaño",
+      "tipo": "paga",
+      "nota": ""
+    },
+    {
+      "id": 18,
+      "nombre": "Jerónimo",
+      "nucleo": "Familia Lorena Riaño",
+      "tipo": "paga",
+      "nota": ""
+    },
+    {
+      "id": 19,
+      "nombre": "Dario Leal",
+      "nucleo": "Familia Leal Huerfano",
+      "tipo": "paga",
+      "nota": ""
+    },
+    {
+      "id": 20,
+      "nombre": "Gina Huerfano",
+      "nucleo": "Familia Leal Huerfano",
+      "tipo": "paga",
+      "nota": ""
+    },
+    {
+      "id": 21,
+      "nombre": "Cristóbal Leal",
+      "nucleo": "Familia Leal Huerfano",
+      "tipo": "gratis",
+      "nota": ""
+    },
+    {
+      "id": 22,
+      "nombre": "Verónica Leal",
+      "nucleo": "Familia Leal Huerfano",
+      "tipo": "gratis",
+      "nota": ""
+    },
+    {
+      "id": 23,
+      "nombre": "Johan Huerfano",
+      "nucleo": "Familia Huerfano Jimenez",
+      "tipo": "paga",
+      "nota": ""
+    },
+    {
+      "id": 24,
+      "nombre": "Viviana Jimenez",
+      "nucleo": "Familia Huerfano Jimenez",
+      "tipo": "paga",
+      "nota": ""
+    },
+    {
+      "id": 25,
+      "nombre": "Valentina Amado",
+      "nucleo": "Familia Huerfano Jimenez",
+      "tipo": "paga",
+      "nota": ""
+    },
+    {
+      "id": 26,
+      "nombre": "Antonella Huerfano",
+      "nucleo": "Familia Huerfano Jimenez",
+      "tipo": "gratis",
+      "nota": ""
+    },
+    {
+      "id": 27,
+      "nombre": "Marcelo Guanumen",
+      "nucleo": "Familia Guanumen Tinjaca",
+      "tipo": "paga",
+      "nota": ""
+    },
+    {
+      "id": 28,
+      "nombre": "Claudia Tinjaca",
+      "nucleo": "Familia Guanumen Tinjaca",
+      "tipo": "paga",
+      "nota": ""
+    },
+    {
+      "id": 29,
+      "nombre": "Pablo Guanumen",
+      "nucleo": "Familia Guanumen Tinjaca",
+      "tipo": "paga",
+      "nota": ""
+    },
+    {
+      "id": 30,
+      "nombre": "Hernando Riaño",
+      "nucleo": "Familia Riaño Vega",
+      "tipo": "paga",
+      "nota": ""
+    },
+    {
+      "id": 31,
+      "nombre": "Maribel Vega",
+      "nucleo": "Familia Riaño Vega",
+      "tipo": "paga",
+      "nota": ""
+    },
+    {
+      "id": 32,
+      "nombre": "Álvaro Riaño",
+      "nucleo": "Álvaro Riaño",
+      "tipo": "paga",
+      "nota": ""
+    },
+    {
+      "id": 33,
+      "nombre": "Néstor Guanumen",
+      "nucleo": "Néstor Guanumen",
+      "tipo": "paga",
+      "nota": ""
+    },
+    {
+      "id": 34,
+      "nombre": "Johnatan Guanumen",
+      "nucleo": "Familia Guanumen Ramirez",
+      "tipo": "paga",
+      "nota": ""
+    },
+    {
+      "id": 35,
+      "nombre": "Jenny Ramirez",
+      "nucleo": "Familia Guanumen Ramirez",
+      "tipo": "paga",
+      "nota": ""
+    },
+    {
+      "id": 37,
+      "nombre": "Angela Riaño",
+      "nucleo": "Familia Angela Riaño",
+      "tipo": "paga",
+      "nota": ""
+    },
+    {
+      "id": 38,
+      "nombre": "Isabella",
+      "nucleo": "Familia Angela Riaño",
+      "tipo": "paga",
+      "nota": ""
+    }
+  ],
+  "pagos": [
+    {
+      "id": 1785271682203,
+      "personaId": 7,
+      "cuotaNum": 1,
+      "valor": 100000,
+      "fecha": "2026-07-28",
+      "medio": "Transferencia",
+      "comprobante": ""
+    },
+    {
+      "id": 1785501778989,
+      "personaId": 11,
+      "cuotaNum": 1,
+      "valor": 100000,
+      "fecha": "2026-07-31",
+      "medio": "Transferencia",
+      "comprobante": "Pago grupal Familia Saavedra Riaño"
+    },
+    {
+      "id": 1785501778990,
+      "personaId": 12,
+      "cuotaNum": 1,
+      "valor": 100000,
+      "fecha": "2026-07-31",
+      "medio": "Transferencia",
+      "comprobante": "Pago grupal Familia Saavedra Riaño"
+    },
+    {
+      "id": 1785504519775,
+      "personaId": 15,
+      "cuotaNum": 1,
+      "valor": 100000,
+      "fecha": "2026-07-31",
+      "medio": "Nequi",
+      "comprobante": "Pago grupal Familia Granados Guanumen"
+    },
+    {
+      "id": 1785504519776,
+      "personaId": 16,
+      "cuotaNum": 1,
+      "valor": 100000,
+      "fecha": "2026-07-31",
+      "medio": "Nequi",
+      "comprobante": "Pago grupal Familia Granados Guanumen"
+    },
+    {
+      "id": 1785603137486,
+      "personaId": 34,
+      "cuotaNum": 1,
+      "valor": 100000,
+      "fecha": "2026-08-01",
+      "medio": "Nequi",
+      "comprobante": "Pago grupal Familia Guanumen Ramirez"
+    },
+    {
+      "id": 1785603137487,
+      "personaId": 35,
+      "cuotaNum": 1,
+      "valor": 100000,
+      "fecha": "2026-08-01",
+      "medio": "Nequi",
+      "comprobante": "Pago grupal Familia Guanumen Ramirez"
+    },
+    {
+      "id": 1785631801307,
+      "personaId": 27,
+      "cuotaNum": 1,
+      "valor": 100000,
+      "fecha": "2026-08-02",
+      "medio": "Nequi",
+      "comprobante": "Pago grupal Familia Guanumen Tinjaca"
+    },
+    {
+      "id": 1785631801308,
+      "personaId": 28,
+      "cuotaNum": 1,
+      "valor": 100000,
+      "fecha": "2026-08-02",
+      "medio": "Nequi",
+      "comprobante": "Pago grupal Familia Guanumen Tinjaca"
+    },
+    {
+      "id": 1785631801309,
+      "personaId": 29,
+      "cuotaNum": 1,
+      "valor": 100000,
+      "fecha": "2026-08-02",
+      "medio": "Nequi",
+      "comprobante": "Pago grupal Familia Guanumen Tinjaca"
+    },
+    {
+      "id": 1786053225828,
+      "personaId": 19,
+      "cuotaNum": 1,
+      "valor": 100000,
+      "fecha": "2026-08-06",
+      "medio": "Nequi",
+      "comprobante": "Pago grupal Familia Leal Huerfano"
+    },
+    {
+      "id": 1786053225829,
+      "personaId": 20,
+      "cuotaNum": 1,
+      "valor": 100000,
+      "fecha": "2026-08-06",
+      "medio": "Nequi",
+      "comprobante": "Pago grupal Familia Leal Huerfano"
+    },
+    {
+      "id": 1786053243380,
+      "personaId": 4,
+      "cuotaNum": 1,
+      "valor": 100000,
+      "fecha": "2026-08-06",
+      "medio": "Transferencia",
+      "comprobante": ""
+    },
+    {
+      "id": 1786053257105,
+      "personaId": 5,
+      "cuotaNum": 1,
+      "valor": 100000,
+      "fecha": "2026-08-06",
+      "medio": "Transferencia",
+      "comprobante": ""
+    },
+    {
+      "id": 1786053268631,
+      "personaId": 6,
+      "cuotaNum": 1,
+      "valor": 100000,
+      "fecha": "2026-08-06",
+      "medio": "Transferencia",
+      "comprobante": ""
+    }
+  ]
+}
