@@ -341,7 +341,7 @@ tfoot td { background:#1A3A5C; color:rgba(255,255,255,0.9); padding:12px 14px; f
     <div class="header-eyebrow">Organización Familiar</div>
     <h1 class="header-title">Viaje Reyes 2027</h1>
     <p class="header-sub">9 al 11 de enero de 2027 · 2 noches · 3 días</p>
-    <div class="header-pill"><span class="dot"></span>Estado de pagos · Consulta libre para toda la familia</div>
+    <div class="header-pill"><span class="dot"></span>Estado de pagos · <span id="sync-badge" style="color:rgba(255,255,255,0.6)">Cargando...</span></div>
     <div class="header-stats">
       <!-- Bloque 1: Cuenta regresiva -->
       <div class="hstat">
@@ -428,7 +428,7 @@ tfoot td { background:#1A3A5C; color:rgba(255,255,255,0.9); padding:12px 14px; f
 
   <div class="notice">
     <svg class="icon-inline" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="var(--green)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="9"/></svg>
-    <strong>Transparencia.</strong> Todo el dinero recaudado se destina exclusivamente al viaje, sin ningún ánimo de lucro.
+    <strong>Transparencia total.</strong> Todo el dinero recaudado se destina exclusivamente al viaje, sin ningún ánimo de lucro.
     Cada pago realizado estará respaldado por sus respectivas cotizaciones, contratos, comprobantes o facturas, los cuales se
     compartirán con el grupo a medida que avance la organización.
     <br><br>
@@ -444,13 +444,13 @@ tfoot td { background:#1A3A5C; color:rgba(255,255,255,0.9); padding:12px 14px; f
     <br><br>
     <svg class="icon-inline" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="var(--amber)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>
     El compromiso de las fechas de pago es de cada familia. No se realizarán cobros individuales ni recordatorios
-    personalizados el avance del proyecto depende del cumplimiento de todos. Cualquier duda, plantéala con tiempo en el grupo.
+    personalizados — el avance del proyecto depende del cumplimiento de todos. Cualquier duda, plantéala con tiempo en el grupo.
   </div>
 
 </main>
 
 <footer class="site-footer">
-  Organizado por <strong>Camilo Rey</strong> · Viaje Familiar Reyes 2027<br>
+  Organizado por <strong>Camilo</strong> · Viaje Familiar Reyes 2027<br>
   Última actualización: <strong id="last-update">—</strong>
 </footer>
 
@@ -635,20 +635,13 @@ tfoot td { background:#1A3A5C; color:rgba(255,255,255,0.9); padding:12px 14px; f
 <script>
 // ═══════════════════════════════ DATA ═══════════════════════════════
 const PERSONAS_DEFAULT = [
-  {id:1,nombre:"David Saavedra",nucleo:"Familia Saavedra Martinez",tipo:"paga",nota:""},
-  {id:2,nombre:"Jakeline Martinez",nucleo:"Familia Saavedra Martinez",tipo:"paga",nota:""},
-  {id:3,nombre:"Juan David Saavedra",nucleo:"Familia Saavedra Martinez",tipo:"paga",nota:""},
   {id:4,nombre:"Rubén Rey",nucleo:"Familia Rey Guanumen",tipo:"paga",nota:""},
   {id:5,nombre:"Lida Guanumen",nucleo:"Familia Rey Guanumen",tipo:"paga",nota:""},
   {id:6,nombre:"Lucía Rey",nucleo:"Familia Rey Guanumen",tipo:"paga",nota:""},
   {id:7,nombre:"Camilo Rey",nucleo:"Familia Rey Guanumen",tipo:"paga",nota:""},
   {id:8,nombre:"Valentina Riaño",nucleo:"Valentina Riaño",tipo:"paga",nota:""},
-  {id:9,nombre:"Nelba Riaño",nucleo:"Familia Huerfano Riaño",tipo:"paga",nota:""},
-  {id:10,nombre:"Cesar Huerfano",nucleo:"Familia Huerfano Riaño",tipo:"paga",nota:""},
   {id:11,nombre:"Alejandra Saavedra",nucleo:"Familia Saavedra Riaño",tipo:"paga",nota:""},
   {id:12,nombre:"Rubiela Riaño",nucleo:"Familia Saavedra Riaño",tipo:"paga",nota:""},
-  {id:13,nombre:"Leonardo Riaño",nucleo:"Familia Riaño Rojas",tipo:"paga",nota:""},
-  {id:14,nombre:"Yesica Rojas",nucleo:"Familia Riaño Rojas",tipo:"paga",nota:""},
   {id:15,nombre:"Laura Granados",nucleo:"Familia Granados Guanumen",tipo:"paga",nota:""},
   {id:16,nombre:"Constanza Guanumen",nucleo:"Familia Granados Guanumen",tipo:"paga",nota:""},
   {id:17,nombre:"Lorena Riaño",nucleo:"Familia Lorena Riaño",tipo:"paga",nota:""},
@@ -670,7 +663,6 @@ const PERSONAS_DEFAULT = [
   {id:33,nombre:"Néstor Guanumen",nucleo:"Néstor Guanumen",tipo:"paga",nota:""},
   {id:34,nombre:"Johnatan Guanumen",nucleo:"Familia Guanumen Ramirez",tipo:"paga",nota:""},
   {id:35,nombre:"Jenny Ramirez",nucleo:"Familia Guanumen Ramirez",tipo:"paga",nota:""},
-  {id:36,nombre:"Cristian Riaño",nucleo:"Cristian Riaño",tipo:"paga",nota:""},
   {id:37,nombre:"Angela Riaño",nucleo:"Familia Angela Riaño",tipo:"paga",nota:""},
   {id:38,nombre:"Isabella",nucleo:"Familia Angela Riaño",tipo:"paga",nota:""},
 ];
@@ -696,12 +688,42 @@ let personas = [];
 let authed = false;
 let currentView = "personas";
 
+const GITHUB_DATOS_URL = "https://camilorey14.github.io/Personal/datos.json";
+
 function loadData(){
   try{ pagos = JSON.parse(localStorage.getItem(LS_PAGOS)||"[]"); }catch{ pagos=[]; }
   try{
     const stored = JSON.parse(localStorage.getItem(LS_PERSONAS)||"null");
     personas = stored && Array.isArray(stored) && stored.length ? stored : JSON.parse(JSON.stringify(PERSONAS_DEFAULT));
   }catch{ personas = JSON.parse(JSON.stringify(PERSONAS_DEFAULT)); }
+}
+
+async function loadFromGitHub(){
+  try{
+    const res = await fetch(GITHUB_DATOS_URL + "?t=" + Date.now());
+    if(!res.ok) throw new Error("HTTP "+res.status);
+    const data = await res.json();
+    if(!Array.isArray(data.pagos)) throw new Error("Formato inválido");
+    // Only update from GitHub if the data is newer than localStorage
+    const ghDate = new Date(data.exportado||0);
+    const lsDate = new Date(localStorage.getItem(LS_UPD)||0);
+    if(ghDate > lsDate){
+      pagos = data.pagos;
+      if(Array.isArray(data.personas) && data.personas.length) personas = data.personas;
+      localStorage.setItem(LS_PAGOS, JSON.stringify(pagos));
+      localStorage.setItem(LS_PERSONAS, JSON.stringify(personas));
+      localStorage.setItem(LS_UPD, data.exportado);
+      renderAll();
+      document.getElementById("sync-badge").textContent = "Sincronizado ✓";
+      document.getElementById("sync-badge").style.color = "rgba(74,222,128,0.9)";
+    } else {
+      document.getElementById("sync-badge").textContent = "Datos al día ✓";
+      document.getElementById("sync-badge").style.color = "rgba(74,222,128,0.9)";
+    }
+  } catch(e){
+    console.warn("GitHub sync:", e.message);
+    document.getElementById("sync-badge").textContent = "Sin conexión";
+  }
 }
 function savePagos(){ localStorage.setItem(LS_PAGOS, JSON.stringify(pagos)); localStorage.setItem(LS_UPD, new Date().toISOString()); renderAll(); }
 function savePersonas(){ localStorage.setItem(LS_PERSONAS, JSON.stringify(personas)); localStorage.setItem(LS_UPD, new Date().toISOString()); renderAll(); }
@@ -785,7 +807,7 @@ function renderKPIs(){
   const rec = totalRecaudado(); const presup = presupuesto();
   const pct = presup>0 ? rec/presup : 0;
   const aldia = pagan().filter(p=>pagadoPorPersona(p.id)>=TOTAL_PP).length;
-  const npend = pagan().filter(p=>pagadoPorPersona(p.id)<TOTAL_PP).length;
+  const npend = pagan().filter(p=>cuotasAtrasadas(p)>0).length;
   document.getElementById("kpi-total").textContent = personas.length;
   document.getElementById("kpi-presupuesto").textContent = fmtCompact(presup);
   document.getElementById("kpi-presupuesto").title = fmt(presup);
@@ -1125,8 +1147,8 @@ function exportarDatos(){
   const data={exportado:new Date().toISOString(),version:"2.0",personas,pagos};
   const blob=new Blob([JSON.stringify(data,null,2)],{type:"application/json"});
   const a=document.createElement("a"); a.href=URL.createObjectURL(blob);
-  a.download=`reyes2027_backup_${new Date().toISOString().slice(0,10)}.json`; a.click();
-  toast("Backup exportado","ok");
+  a.download="datos.json"; a.click();
+  toast("Exportado como datos.json — súbelo a GitHub para sincronizar","ok");
 }
 function importarDatos(event){
   const file=event.target.files[0]; if(!file) return;
@@ -1185,7 +1207,10 @@ function toast(msg,type="ok"){
 // ═══════════════════════════════ INIT ═══════════════════════════════
 loadData();
 renderAll();
+loadFromGitHub();
 setInterval(renderCountdown, 60000);
+setInterval(loadFromGitHub, 5*60*1000); // Re-sync every 5 min
 </script>
 </body>
 </html>
+
