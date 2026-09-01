@@ -1,10 +1,10 @@
 {
-  "exportado": "2026-08-24T21:21:25.518Z",
+  "exportado": "2026-09-01T12:09:39.285Z",
   "version": "2.0",
   "personas": [
     {
       "id": 4,
-      "nombre": "RubÃ©n Rey",
+      "nombre": "Ruben Rey",
       "nucleo": "Familia Rey Guanumen",
       "tipo": "paga",
       "nota": ""
@@ -18,7 +18,7 @@
     },
     {
       "id": 6,
-      "nombre": "LucÃ­a Rey",
+      "nombre": "Lucia Rey",
       "nucleo": "Familia Rey Guanumen",
       "tipo": "paga",
       "nota": ""
@@ -32,22 +32,22 @@
     },
     {
       "id": 8,
-      "nombre": "Valentina RiaÃ±o",
-      "nucleo": "Valentina RiaÃ±o",
+      "nombre": "Valentina Riaño",
+      "nucleo": "Valentina Riaño",
       "tipo": "paga",
       "nota": ""
     },
     {
       "id": 11,
       "nombre": "Alejandra Saavedra",
-      "nucleo": "Familia Saavedra RiaÃ±o",
+      "nucleo": "Familia Saavedra Riaño",
       "tipo": "paga",
       "nota": ""
     },
     {
       "id": 12,
-      "nombre": "Rubiela RiaÃ±o",
-      "nucleo": "Familia Saavedra RiaÃ±o",
+      "nombre": "Rubiela Riaño",
+      "nucleo": "Familia Saavedra Riaño",
       "tipo": "paga",
       "nota": ""
     },
@@ -67,15 +67,15 @@
     },
     {
       "id": 17,
-      "nombre": "Lorena RiaÃ±o",
-      "nucleo": "Familia Lorena RiaÃ±o",
+      "nombre": "Lorena Riaño",
+      "nucleo": "Familia Lorena Riaño",
       "tipo": "paga",
       "nota": ""
     },
     {
       "id": 18,
-      "nombre": "JerÃ³nimo",
-      "nucleo": "Familia Lorena RiaÃ±o",
+      "nombre": "Jeronimo",
+      "nucleo": "Familia Lorena Riaño",
       "tipo": "paga",
       "nota": ""
     },
@@ -95,14 +95,14 @@
     },
     {
       "id": 21,
-      "nombre": "CristÃ³bal Leal",
+      "nombre": "Cristobal Leal",
       "nucleo": "Familia Leal Huerfano",
       "tipo": "gratis",
       "nota": ""
     },
     {
       "id": 22,
-      "nombre": "VerÃ³nica Leal",
+      "nombre": "Veronica Leal",
       "nucleo": "Familia Leal Huerfano",
       "tipo": "gratis",
       "nota": ""
@@ -158,29 +158,29 @@
     },
     {
       "id": 30,
-      "nombre": "Hernando RiaÃ±o",
-      "nucleo": "Familia RiaÃ±o Vega",
+      "nombre": "Hernando Riaño",
+      "nucleo": "Familia Riaño Vega",
       "tipo": "paga",
       "nota": ""
     },
     {
       "id": 31,
       "nombre": "Maribel Vega",
-      "nucleo": "Familia RiaÃ±o Vega",
+      "nucleo": "Familia Riaño Vega",
       "tipo": "paga",
       "nota": ""
     },
     {
       "id": 32,
-      "nombre": "Ãlvaro RiaÃ±o",
-      "nucleo": "Ãlvaro RiaÃ±o",
+      "nombre": "Álvaro Riaño",
+      "nucleo": "Álvaro Riaño",
       "tipo": "paga",
       "nota": ""
     },
     {
       "id": 33,
-      "nombre": "NÃ©stor Guanumen",
-      "nucleo": "NÃ©stor Guanumen",
+      "nombre": "Nestor Guanumen",
+      "nucleo": "Nesstor Guanumen",
       "tipo": "paga",
       "nota": ""
     },
@@ -200,15 +200,15 @@
     },
     {
       "id": 37,
-      "nombre": "Angela RiaÃ±o",
-      "nucleo": "Familia Angela RiaÃ±o",
+      "nombre": "Angela Riaño",
+      "nucleo": "Familia Angela Riaño",
       "tipo": "paga",
       "nota": ""
     },
     {
       "id": 38,
       "nombre": "Isabella",
-      "nucleo": "Familia Angela RiaÃ±o",
+      "nucleo": "Familia Angela Riaño",
       "tipo": "paga",
       "nota": ""
     }
@@ -346,6 +346,69 @@
       "cuotaNum": 1,
       "valor": 100000,
       "fecha": "2026-08-06",
+      "medio": "Transferencia",
+      "comprobante": ""
+    },
+    {
+      "id": 1788264328466,
+      "personaId": 11,
+      "cuotaNum": 2,
+      "valor": 100000,
+      "fecha": "2026-08-31",
+      "medio": "Transferencia",
+      "comprobante": "Pago grupal Familia Saavedra Riaño"
+    },
+    {
+      "id": 1788264328467,
+      "personaId": 12,
+      "cuotaNum": 2,
+      "valor": 100000,
+      "fecha": "2026-08-31",
+      "medio": "Transferencia",
+      "comprobante": "Pago grupal Familia Saavedra Riaño"
+    },
+    {
+      "id": 1788264344642,
+      "personaId": 37,
+      "cuotaNum": 1,
+      "valor": 100000,
+      "fecha": "2026-08-29",
+      "medio": "Transferencia",
+      "comprobante": "Pago grupal Familia Angela Riaño"
+    },
+    {
+      "id": 1788264344643,
+      "personaId": 38,
+      "cuotaNum": 1,
+      "valor": 100000,
+      "fecha": "2026-08-29",
+      "medio": "Transferencia",
+      "comprobante": "Pago grupal Familia Angela Riaño"
+    },
+    {
+      "id": 1788264356359,
+      "personaId": 37,
+      "cuotaNum": 2,
+      "valor": 100000,
+      "fecha": "2026-08-29",
+      "medio": "Transferencia",
+      "comprobante": "Pago grupal Familia Angela Riaño"
+    },
+    {
+      "id": 1788264356360,
+      "personaId": 38,
+      "cuotaNum": 2,
+      "valor": 100000,
+      "fecha": "2026-08-29",
+      "medio": "Transferencia",
+      "comprobante": "Pago grupal Familia Angela Riaño"
+    },
+    {
+      "id": 1788264392548,
+      "personaId": 7,
+      "cuotaNum": 2,
+      "valor": 100000,
+      "fecha": "2026-09-01",
       "medio": "Transferencia",
       "comprobante": ""
     }
