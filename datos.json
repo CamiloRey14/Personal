@@ -1,5 +1,5 @@
 {
-  "exportado": "2026-09-01T12:09:39.285Z",
+  "exportado": "2026-09-02T14:06:34.244Z",
   "version": "2.0",
   "personas": [
     {
@@ -411,6 +411,24 @@
       "fecha": "2026-09-01",
       "medio": "Transferencia",
       "comprobante": ""
+    },
+    {
+      "id": 1788357976178,
+      "personaId": 34,
+      "cuotaNum": 2,
+      "valor": 100000,
+      "fecha": "2026-09-01",
+      "medio": "Transferencia",
+      "comprobante": "Pago grupal Familia Guanumen Ramirez"
+    },
+    {
+      "id": 1788357976179,
+      "personaId": 35,
+      "cuotaNum": 2,
+      "valor": 100000,
+      "fecha": "2026-09-01",
+      "medio": "Transferencia",
+      "comprobante": "Pago grupal Familia Guanumen Ramirez"
     }
   ]
 }
