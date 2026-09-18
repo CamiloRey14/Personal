@@ -1,5 +1,5 @@
 {
-  "exportado": "2026-09-02T14:06:34.244Z",
+  "exportado": "2026-09-18T19:06:03.223Z",
   "version": "2.0",
   "personas": [
     {
@@ -167,13 +167,6 @@
       "id": 31,
       "nombre": "Maribel Vega",
       "nucleo": "Familia Riaño Vega",
-      "tipo": "paga",
-      "nota": ""
-    },
-    {
-      "id": 32,
-      "nombre": "Álvaro Riaño",
-      "nucleo": "Álvaro Riaño",
       "tipo": "paga",
       "nota": ""
     },
@@ -429,6 +422,141 @@
       "fecha": "2026-09-01",
       "medio": "Transferencia",
       "comprobante": "Pago grupal Familia Guanumen Ramirez"
+    },
+    {
+      "id": 1788443883477,
+      "personaId": 23,
+      "cuotaNum": 2,
+      "valor": 100000,
+      "fecha": "2026-09-02",
+      "medio": "Transferencia",
+      "comprobante": "Pago grupal Familia Huerfano Jimenez"
+    },
+    {
+      "id": 1788443883478,
+      "personaId": 24,
+      "cuotaNum": 2,
+      "valor": 100000,
+      "fecha": "2026-09-02",
+      "medio": "Transferencia",
+      "comprobante": "Pago grupal Familia Huerfano Jimenez"
+    },
+    {
+      "id": 1788443883479,
+      "personaId": 25,
+      "cuotaNum": 2,
+      "valor": 100000,
+      "fecha": "2026-09-02",
+      "medio": "Transferencia",
+      "comprobante": "Pago grupal Familia Huerfano Jimenez"
+    },
+    {
+      "id": 1788443896468,
+      "personaId": 27,
+      "cuotaNum": 2,
+      "valor": 100000,
+      "fecha": "2026-09-02",
+      "medio": "Transferencia",
+      "comprobante": "Pago grupal Familia Guanumen Tinjaca"
+    },
+    {
+      "id": 1788443896469,
+      "personaId": 28,
+      "cuotaNum": 2,
+      "valor": 100000,
+      "fecha": "2026-09-02",
+      "medio": "Transferencia",
+      "comprobante": "Pago grupal Familia Guanumen Tinjaca"
+    },
+    {
+      "id": 1788443896470,
+      "personaId": 29,
+      "cuotaNum": 2,
+      "valor": 100000,
+      "fecha": "2026-09-02",
+      "medio": "Transferencia",
+      "comprobante": "Pago grupal Familia Guanumen Tinjaca"
+    },
+    {
+      "id": 1788443927651,
+      "personaId": 30,
+      "cuotaNum": 1,
+      "valor": 100000,
+      "fecha": "2026-09-02",
+      "medio": "Transferencia",
+      "comprobante": "Pago grupal Familia Riaño Vega"
+    },
+    {
+      "id": 1788443927652,
+      "personaId": 31,
+      "cuotaNum": 1,
+      "valor": 100000,
+      "fecha": "2026-09-02",
+      "medio": "Transferencia",
+      "comprobante": "Pago grupal Familia Riaño Vega"
+    },
+    {
+      "id": 1788443952620,
+      "personaId": 30,
+      "cuotaNum": 1,
+      "valor": 100000,
+      "fecha": "2026-09-02",
+      "medio": "Transferencia",
+      "comprobante": "Pago grupal Familia Riaño Vega"
+    },
+    {
+      "id": 1788443952621,
+      "personaId": 31,
+      "cuotaNum": 1,
+      "valor": 100000,
+      "fecha": "2026-09-02",
+      "medio": "Transferencia",
+      "comprobante": "Pago grupal Familia Riaño Vega"
+    },
+    {
+      "id": 1788444038095,
+      "personaId": 23,
+      "cuotaNum": 1,
+      "valor": 100000,
+      "fecha": "2026-09-02",
+      "medio": "Transferencia",
+      "comprobante": "Pago grupal Familia Huerfano Jimenez"
+    },
+    {
+      "id": 1788444038096,
+      "personaId": 24,
+      "cuotaNum": 1,
+      "valor": 100000,
+      "fecha": "2026-09-02",
+      "medio": "Transferencia",
+      "comprobante": "Pago grupal Familia Huerfano Jimenez"
+    },
+    {
+      "id": 1788444038097,
+      "personaId": 25,
+      "cuotaNum": 1,
+      "valor": 100000,
+      "fecha": "2026-09-02",
+      "medio": "Transferencia",
+      "comprobante": "Pago grupal Familia Huerfano Jimenez"
+    },
+    {
+      "id": 1788444053117,
+      "personaId": 30,
+      "cuotaNum": 2,
+      "valor": 150000,
+      "fecha": "2026-09-02",
+      "medio": "Transferencia",
+      "comprobante": "Pago grupal Familia Riaño Vega"
+    },
+    {
+      "id": 1788444053118,
+      "personaId": 31,
+      "cuotaNum": 2,
+      "valor": 150000,
+      "fecha": "2026-09-02",
+      "medio": "Transferencia",
+      "comprobante": "Pago grupal Familia Riaño Vega"
     }
   ]
 }
