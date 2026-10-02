@@ -1,5 +1,5 @@
 {
-  "exportado": "2026-09-18T19:06:03.223Z",
+  "exportado": "2026-10-02T17:15:28.359Z",
   "version": "2.0",
   "personas": [
     {
@@ -27,13 +27,6 @@
       "id": 7,
       "nombre": "Camilo Rey",
       "nucleo": "Familia Rey Guanumen",
-      "tipo": "paga",
-      "nota": ""
-    },
-    {
-      "id": 8,
-      "nombre": "Valentina Riaño",
-      "nucleo": "Valentina Riaño",
       "tipo": "paga",
       "nota": ""
     },
@@ -478,24 +471,6 @@
       "comprobante": "Pago grupal Familia Guanumen Tinjaca"
     },
     {
-      "id": 1788443927651,
-      "personaId": 30,
-      "cuotaNum": 1,
-      "valor": 100000,
-      "fecha": "2026-09-02",
-      "medio": "Transferencia",
-      "comprobante": "Pago grupal Familia Riaño Vega"
-    },
-    {
-      "id": 1788443927652,
-      "personaId": 31,
-      "cuotaNum": 1,
-      "valor": 100000,
-      "fecha": "2026-09-02",
-      "medio": "Transferencia",
-      "comprobante": "Pago grupal Familia Riaño Vega"
-    },
-    {
       "id": 1788443952620,
       "personaId": 30,
       "cuotaNum": 1,
@@ -541,22 +516,292 @@
       "comprobante": "Pago grupal Familia Huerfano Jimenez"
     },
     {
-      "id": 1788444053117,
+      "id": 1790876217405,
       "personaId": 30,
       "cuotaNum": 2,
-      "valor": 150000,
+      "valor": 100000,
       "fecha": "2026-09-02",
+      "medio": "Nequi",
+      "comprobante": "Pago grupal Familia Riaño Vega"
+    },
+    {
+      "id": 1790876217406,
+      "personaId": 31,
+      "cuotaNum": 2,
+      "valor": 100000,
+      "fecha": "2026-09-02",
+      "medio": "Nequi",
+      "comprobante": "Pago grupal Familia Riaño Vega"
+    },
+    {
+      "id": 1790876294721,
+      "personaId": 11,
+      "cuotaNum": 3,
+      "valor": 100000,
+      "fecha": "2026-09-28",
+      "medio": "Transferencia",
+      "comprobante": "Pago grupal Familia Saavedra Riaño"
+    },
+    {
+      "id": 1790876294722,
+      "personaId": 12,
+      "cuotaNum": 3,
+      "valor": 100000,
+      "fecha": "2026-09-28",
+      "medio": "Transferencia",
+      "comprobante": "Pago grupal Familia Saavedra Riaño"
+    },
+    {
+      "id": 1790876318955,
+      "personaId": 27,
+      "cuotaNum": 3,
+      "valor": 100000,
+      "fecha": "2026-09-29",
+      "medio": "Transferencia",
+      "comprobante": "Pago grupal Familia Guanumen Tinjaca"
+    },
+    {
+      "id": 1790876318956,
+      "personaId": 28,
+      "cuotaNum": 3,
+      "valor": 100000,
+      "fecha": "2026-09-29",
+      "medio": "Transferencia",
+      "comprobante": "Pago grupal Familia Guanumen Tinjaca"
+    },
+    {
+      "id": 1790876318957,
+      "personaId": 29,
+      "cuotaNum": 3,
+      "valor": 100000,
+      "fecha": "2026-09-29",
+      "medio": "Transferencia",
+      "comprobante": "Pago grupal Familia Guanumen Tinjaca"
+    },
+    {
+      "id": 1790876340131,
+      "personaId": 34,
+      "cuotaNum": 3,
+      "valor": 100000,
+      "fecha": "2026-09-30",
+      "medio": "Transferencia",
+      "comprobante": "Pago grupal Familia Guanumen Ramirez"
+    },
+    {
+      "id": 1790876340132,
+      "personaId": 35,
+      "cuotaNum": 3,
+      "valor": 100000,
+      "fecha": "2026-09-30",
+      "medio": "Transferencia",
+      "comprobante": "Pago grupal Familia Guanumen Ramirez"
+    },
+    {
+      "id": 1790876368651,
+      "personaId": 19,
+      "cuotaNum": 2,
+      "valor": 100000,
+      "fecha": "2026-10-01",
+      "medio": "Transferencia",
+      "comprobante": "Pago grupal Familia Leal Huerfano"
+    },
+    {
+      "id": 1790876368652,
+      "personaId": 20,
+      "cuotaNum": 2,
+      "valor": 100000,
+      "fecha": "2026-10-01",
+      "medio": "Transferencia",
+      "comprobante": "Pago grupal Familia Leal Huerfano"
+    },
+    {
+      "id": 1790876385235,
+      "personaId": 19,
+      "cuotaNum": 3,
+      "valor": 100000,
+      "fecha": "2026-10-01",
+      "medio": "Transferencia",
+      "comprobante": "Pago grupal Familia Leal Huerfano"
+    },
+    {
+      "id": 1790876385236,
+      "personaId": 20,
+      "cuotaNum": 3,
+      "valor": 100000,
+      "fecha": "2026-10-01",
+      "medio": "Transferencia",
+      "comprobante": "Pago grupal Familia Leal Huerfano"
+    },
+    {
+      "id": 1790876406037,
+      "personaId": 17,
+      "cuotaNum": 1,
+      "valor": 100000,
+      "fecha": "2026-10-01",
+      "medio": "Transferencia",
+      "comprobante": "Pago grupal Familia Lorena Riaño"
+    },
+    {
+      "id": 1790876406038,
+      "personaId": 18,
+      "cuotaNum": 1,
+      "valor": 100000,
+      "fecha": "2026-10-01",
+      "medio": "Transferencia",
+      "comprobante": "Pago grupal Familia Lorena Riaño"
+    },
+    {
+      "id": 1790876422549,
+      "personaId": 17,
+      "cuotaNum": 2,
+      "valor": 100000,
+      "fecha": "2026-10-01",
+      "medio": "Transferencia",
+      "comprobante": "Pago grupal Familia Lorena Riaño"
+    },
+    {
+      "id": 1790876422551,
+      "personaId": 18,
+      "cuotaNum": 2,
+      "valor": 100000,
+      "fecha": "2026-10-01",
+      "medio": "Transferencia",
+      "comprobante": "Pago grupal Familia Lorena Riaño"
+    },
+    {
+      "id": 1790876433463,
+      "personaId": 17,
+      "cuotaNum": 3,
+      "valor": 100000,
+      "fecha": "2026-10-01",
+      "medio": "Transferencia",
+      "comprobante": "Pago grupal Familia Lorena Riaño"
+    },
+    {
+      "id": 1790876433464,
+      "personaId": 18,
+      "cuotaNum": 3,
+      "valor": 100000,
+      "fecha": "2026-10-01",
+      "medio": "Transferencia",
+      "comprobante": "Pago grupal Familia Lorena Riaño"
+    },
+    {
+      "id": 1790876447949,
+      "personaId": 30,
+      "cuotaNum": 3,
+      "valor": 100000,
+      "fecha": "2026-10-01",
       "medio": "Transferencia",
       "comprobante": "Pago grupal Familia Riaño Vega"
     },
     {
-      "id": 1788444053118,
+      "id": 1790876447950,
       "personaId": 31,
-      "cuotaNum": 2,
-      "valor": 150000,
-      "fecha": "2026-09-02",
+      "cuotaNum": 3,
+      "valor": 100000,
+      "fecha": "2026-10-01",
       "medio": "Transferencia",
       "comprobante": "Pago grupal Familia Riaño Vega"
+    },
+    {
+      "id": 1790876460887,
+      "personaId": 30,
+      "cuotaNum": 4,
+      "valor": 100000,
+      "fecha": "2026-10-01",
+      "medio": "Transferencia",
+      "comprobante": "Pago grupal Familia Riaño Vega"
+    },
+    {
+      "id": 1790876460888,
+      "personaId": 31,
+      "cuotaNum": 4,
+      "valor": 100000,
+      "fecha": "2026-10-01",
+      "medio": "Transferencia",
+      "comprobante": "Pago grupal Familia Riaño Vega"
+    },
+    {
+      "id": 1790876528911,
+      "personaId": 7,
+      "cuotaNum": 3,
+      "valor": 100000,
+      "fecha": "2026-09-30",
+      "medio": "Transferencia",
+      "comprobante": ""
+    },
+    {
+      "id": 1790880272327,
+      "personaId": 15,
+      "cuotaNum": 2,
+      "valor": 100000,
+      "fecha": "2026-10-01",
+      "medio": "Transferencia",
+      "comprobante": "Pago grupal Familia Granados Guanumen"
+    },
+    {
+      "id": 1790880272328,
+      "personaId": 16,
+      "cuotaNum": 2,
+      "valor": 100000,
+      "fecha": "2026-10-01",
+      "medio": "Transferencia",
+      "comprobante": "Pago grupal Familia Granados Guanumen"
+    },
+    {
+      "id": 1790961278408,
+      "personaId": 4,
+      "cuotaNum": 2,
+      "valor": 100000,
+      "fecha": "2026-10-02",
+      "medio": "Otro",
+      "comprobante": "Pago rápido"
+    },
+    {
+      "id": 1790961287518,
+      "personaId": 4,
+      "cuotaNum": 3,
+      "valor": 100000,
+      "fecha": "2026-10-02",
+      "medio": "Otro",
+      "comprobante": "Pago rápido"
+    },
+    {
+      "id": 1790961296769,
+      "personaId": 5,
+      "cuotaNum": 2,
+      "valor": 100000,
+      "fecha": "2026-10-02",
+      "medio": "Otro",
+      "comprobante": "Pago rápido"
+    },
+    {
+      "id": 1790961302030,
+      "personaId": 5,
+      "cuotaNum": 3,
+      "valor": 100000,
+      "fecha": "2026-10-02",
+      "medio": "Otro",
+      "comprobante": "Pago rápido"
+    },
+    {
+      "id": 1790961305306,
+      "personaId": 6,
+      "cuotaNum": 2,
+      "valor": 100000,
+      "fecha": "2026-10-02",
+      "medio": "Otro",
+      "comprobante": "Pago rápido"
+    },
+    {
+      "id": 1790961309904,
+      "personaId": 6,
+      "cuotaNum": 3,
+      "valor": 100000,
+      "fecha": "2026-10-02",
+      "medio": "Otro",
+      "comprobante": "Pago rápido"
     }
   ]
 }
