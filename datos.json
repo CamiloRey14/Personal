@@ -1,5 +1,5 @@
 {
-  "exportado": "2026-11-02T13:50:18.837Z",
+  "exportado": "2026-11-02T22:37:45.476Z",
   "version": "2.0",
   "personas": [
     {
@@ -166,7 +166,7 @@
     {
       "id": 33,
       "nombre": "Nestor Guanumen",
-      "nucleo": "Nesstor Guanumen",
+      "nucleo": "Nestor Guanumen",
       "tipo": "paga",
       "nota": ""
     },
@@ -195,6 +195,20 @@
       "id": 38,
       "nombre": "Isabella",
       "nucleo": "Familia Angela Riaño",
+      "tipo": "paga",
+      "nota": ""
+    },
+    {
+      "id": 39,
+      "nombre": "Yesica Rojas",
+      "nucleo": "Familia Riaño Rojas",
+      "tipo": "paga",
+      "nota": ""
+    },
+    {
+      "id": 40,
+      "nombre": "Leonardo Riaño",
+      "nucleo": "Familia Riaño Rojas",
       "tipo": "paga",
       "nota": ""
     }
@@ -901,6 +915,105 @@
       "fecha": "2026-11-02",
       "medio": "Bancolombia",
       "comprobante": ""
+    },
+    {
+      "id": 1793657909203,
+      "personaId": 27,
+      "cuotaNum": 4,
+      "valor": 100000,
+      "fecha": "2026-11-02",
+      "medio": "Transferencia",
+      "comprobante": "Pago grupal Familia Guanumen Tinjaca"
+    },
+    {
+      "id": 1793657909204,
+      "personaId": 28,
+      "cuotaNum": 4,
+      "valor": 100000,
+      "fecha": "2026-11-02",
+      "medio": "Transferencia",
+      "comprobante": "Pago grupal Familia Guanumen Tinjaca"
+    },
+    {
+      "id": 1793657909205,
+      "personaId": 29,
+      "cuotaNum": 4,
+      "valor": 100000,
+      "fecha": "2026-11-02",
+      "medio": "Transferencia",
+      "comprobante": "Pago grupal Familia Guanumen Tinjaca"
+    },
+    {
+      "id": 1793658918279,
+      "personaId": 5,
+      "cuotaNum": 4,
+      "valor": 100000,
+      "fecha": "2026-11-02",
+      "medio": "Otro",
+      "comprobante": "Pago rápido"
+    },
+    {
+      "id": 1793658922711,
+      "personaId": 5,
+      "cuotaNum": 5,
+      "valor": 150000,
+      "fecha": "2026-11-02",
+      "medio": "Otro",
+      "comprobante": "Pago rápido"
+    },
+    {
+      "id": 1793658929309,
+      "personaId": 37,
+      "cuotaNum": 3,
+      "valor": 100000,
+      "fecha": "2026-11-02",
+      "medio": "Otro",
+      "comprobante": "Pago rápido"
+    },
+    {
+      "id": 1793658934595,
+      "personaId": 38,
+      "cuotaNum": 3,
+      "valor": 100000,
+      "fecha": "2026-11-02",
+      "medio": "Otro",
+      "comprobante": "Pago rápido"
+    },
+    {
+      "id": 1793658939092,
+      "personaId": 37,
+      "cuotaNum": 4,
+      "valor": 100000,
+      "fecha": "2026-11-02",
+      "medio": "Otro",
+      "comprobante": "Pago rápido"
+    },
+    {
+      "id": 1793658943843,
+      "personaId": 38,
+      "cuotaNum": 4,
+      "valor": 100000,
+      "fecha": "2026-11-02",
+      "medio": "Otro",
+      "comprobante": "Pago rápido"
+    },
+    {
+      "id": 1793658978189,
+      "personaId": 4,
+      "cuotaNum": 4,
+      "valor": 100000,
+      "fecha": "2026-11-02",
+      "medio": "Otro",
+      "comprobante": "Pago rápido"
+    },
+    {
+      "id": 1793658982337,
+      "personaId": 6,
+      "cuotaNum": 4,
+      "valor": 100000,
+      "fecha": "2026-11-02",
+      "medio": "Otro",
+      "comprobante": "Pago rápido"
     }
   ]
 }
