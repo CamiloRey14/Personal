@@ -1,5 +1,5 @@
 {
-  "exportado": "2026-10-02T17:15:28.359Z",
+  "exportado": "2026-11-02T13:50:18.837Z",
   "version": "2.0",
   "personas": [
     {
@@ -802,6 +802,105 @@
       "fecha": "2026-10-02",
       "medio": "Otro",
       "comprobante": "Pago rápido"
+    },
+    {
+      "id": 1793627179769,
+      "personaId": 11,
+      "cuotaNum": 4,
+      "valor": 100000,
+      "fecha": "2026-11-02",
+      "medio": "Transferencia",
+      "comprobante": "Pago grupal Familia Saavedra Riaño"
+    },
+    {
+      "id": 1793627179770,
+      "personaId": 12,
+      "cuotaNum": 4,
+      "valor": 100000,
+      "fecha": "2026-11-02",
+      "medio": "Transferencia",
+      "comprobante": "Pago grupal Familia Saavedra Riaño"
+    },
+    {
+      "id": 1793627206361,
+      "personaId": 15,
+      "cuotaNum": 3,
+      "valor": 100000,
+      "fecha": "2026-10-29",
+      "medio": "Transferencia",
+      "comprobante": "Pago grupal Familia Granados Guanumen"
+    },
+    {
+      "id": 1793627206362,
+      "personaId": 16,
+      "cuotaNum": 3,
+      "valor": 100000,
+      "fecha": "2026-10-29",
+      "medio": "Transferencia",
+      "comprobante": "Pago grupal Familia Granados Guanumen"
+    },
+    {
+      "id": 1793627218921,
+      "personaId": 15,
+      "cuotaNum": 4,
+      "valor": 100000,
+      "fecha": "2026-10-29",
+      "medio": "Transferencia",
+      "comprobante": "Pago grupal Familia Granados Guanumen"
+    },
+    {
+      "id": 1793627218922,
+      "personaId": 16,
+      "cuotaNum": 4,
+      "valor": 100000,
+      "fecha": "2026-10-29",
+      "medio": "Transferencia",
+      "comprobante": "Pago grupal Familia Granados Guanumen"
+    },
+    {
+      "id": 1793627261353,
+      "personaId": 34,
+      "cuotaNum": 4,
+      "valor": 100000,
+      "fecha": "2026-10-29",
+      "medio": "Transferencia",
+      "comprobante": "Pago grupal Familia Guanumen Ramirez"
+    },
+    {
+      "id": 1793627261354,
+      "personaId": 35,
+      "cuotaNum": 4,
+      "valor": 100000,
+      "fecha": "2026-10-29",
+      "medio": "Transferencia",
+      "comprobante": "Pago grupal Familia Guanumen Ramirez"
+    },
+    {
+      "id": 1793627273803,
+      "personaId": 19,
+      "cuotaNum": 4,
+      "valor": 100000,
+      "fecha": "2026-10-29",
+      "medio": "Transferencia",
+      "comprobante": "Pago grupal Familia Leal Huerfano"
+    },
+    {
+      "id": 1793627273804,
+      "personaId": 20,
+      "cuotaNum": 4,
+      "valor": 100000,
+      "fecha": "2026-10-29",
+      "medio": "Transferencia",
+      "comprobante": "Pago grupal Familia Leal Huerfano"
+    },
+    {
+      "id": 1793627379405,
+      "personaId": 7,
+      "cuotaNum": 4,
+      "valor": 100000,
+      "fecha": "2026-11-02",
+      "medio": "Bancolombia",
+      "comprobante": ""
     }
   ]
 }
