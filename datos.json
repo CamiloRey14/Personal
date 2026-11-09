@@ -1,5 +1,5 @@
 {
-  "exportado": "2026-11-02T22:37:45.476Z",
+  "exportado": "2026-11-09T18:49:05.958Z",
   "version": "2.0",
   "personas": [
     {
@@ -1014,6 +1014,168 @@
       "fecha": "2026-11-02",
       "medio": "Otro",
       "comprobante": "Pago rápido"
+    },
+    {
+      "id": 1794249724995,
+      "personaId": 39,
+      "cuotaNum": 1,
+      "valor": 100000,
+      "fecha": "2026-11-04",
+      "medio": "Nequi",
+      "comprobante": "Pago grupal Familia Riaño Rojas"
+    },
+    {
+      "id": 1794249724996,
+      "personaId": 40,
+      "cuotaNum": 1,
+      "valor": 100000,
+      "fecha": "2026-11-04",
+      "medio": "Nequi",
+      "comprobante": "Pago grupal Familia Riaño Rojas"
+    },
+    {
+      "id": 1794249735399,
+      "personaId": 39,
+      "cuotaNum": 2,
+      "valor": 100000,
+      "fecha": "2026-11-04",
+      "medio": "Nequi",
+      "comprobante": "Pago grupal Familia Riaño Rojas"
+    },
+    {
+      "id": 1794249735400,
+      "personaId": 40,
+      "cuotaNum": 2,
+      "valor": 100000,
+      "fecha": "2026-11-04",
+      "medio": "Nequi",
+      "comprobante": "Pago grupal Familia Riaño Rojas"
+    },
+    {
+      "id": 1794249744709,
+      "personaId": 39,
+      "cuotaNum": 3,
+      "valor": 100000,
+      "fecha": "2026-11-04",
+      "medio": "Nequi",
+      "comprobante": "Pago grupal Familia Riaño Rojas"
+    },
+    {
+      "id": 1794249744710,
+      "personaId": 40,
+      "cuotaNum": 3,
+      "valor": 100000,
+      "fecha": "2026-11-04",
+      "medio": "Nequi",
+      "comprobante": "Pago grupal Familia Riaño Rojas"
+    },
+    {
+      "id": 1794249755180,
+      "personaId": 39,
+      "cuotaNum": 4,
+      "valor": 100000,
+      "fecha": "2026-11-04",
+      "medio": "Nequi",
+      "comprobante": "Pago grupal Familia Riaño Rojas"
+    },
+    {
+      "id": 1794249755182,
+      "personaId": 40,
+      "cuotaNum": 4,
+      "valor": 100000,
+      "fecha": "2026-11-04",
+      "medio": "Nequi",
+      "comprobante": "Pago grupal Familia Riaño Rojas"
+    },
+    {
+      "id": 1794249781938,
+      "personaId": 39,
+      "cuotaNum": 5,
+      "valor": 150000,
+      "fecha": "2026-11-04",
+      "medio": "Nequi",
+      "comprobante": "Pago grupal Familia Riaño Rojas"
+    },
+    {
+      "id": 1794249781939,
+      "personaId": 40,
+      "cuotaNum": 5,
+      "valor": 150000,
+      "fecha": "2026-11-04",
+      "medio": "Nequi",
+      "comprobante": "Pago grupal Familia Riaño Rojas"
+    },
+    {
+      "id": 1794249817502,
+      "personaId": 23,
+      "cuotaNum": 3,
+      "valor": 100000,
+      "fecha": "2026-11-03",
+      "medio": "Nequi",
+      "comprobante": "Pago grupal Familia Huerfano Jimenez"
+    },
+    {
+      "id": 1794249817503,
+      "personaId": 24,
+      "cuotaNum": 3,
+      "valor": 100000,
+      "fecha": "2026-11-03",
+      "medio": "Nequi",
+      "comprobante": "Pago grupal Familia Huerfano Jimenez"
+    },
+    {
+      "id": 1794249817504,
+      "personaId": 25,
+      "cuotaNum": 3,
+      "valor": 100000,
+      "fecha": "2026-11-03",
+      "medio": "Nequi",
+      "comprobante": "Pago grupal Familia Huerfano Jimenez"
+    },
+    {
+      "id": 1794249831656,
+      "personaId": 23,
+      "cuotaNum": 4,
+      "valor": 100000,
+      "fecha": "2026-11-03",
+      "medio": "Transferencia",
+      "comprobante": "Pago grupal Familia Huerfano Jimenez"
+    },
+    {
+      "id": 1794249831657,
+      "personaId": 24,
+      "cuotaNum": 4,
+      "valor": 100000,
+      "fecha": "2026-11-03",
+      "medio": "Transferencia",
+      "comprobante": "Pago grupal Familia Huerfano Jimenez"
+    },
+    {
+      "id": 1794249831658,
+      "personaId": 25,
+      "cuotaNum": 4,
+      "valor": 100000,
+      "fecha": "2026-11-03",
+      "medio": "Transferencia",
+      "comprobante": "Pago grupal Familia Huerfano Jimenez"
+    },
+    {
+      "id": 1794250023280,
+      "personaId": 30,
+      "cuotaNum": 5,
+      "valor": 150000,
+      "fecha": "2026-11-05",
+      "medio": "Transferencia",
+      "comprobante": "Pago grupal Familia Riaño Vega"
+    },
+    {
+      "id": 1794250023281,
+      "personaId": 31,
+      "cuotaNum": 5,
+      "valor": 150000,
+      "fecha": "2026-11-05",
+      "medio": "Transferencia",
+      "comprobante": "Pago grupal Familia Riaño Vega"
     }
   ]
 }
