@@ -1,5 +1,5 @@
 {
-  "exportado": "2026-11-09T18:49:05.958Z",
+  "exportado": "2026-11-11T20:05:09.217Z",
   "version": "2.0",
   "personas": [
     {
@@ -160,13 +160,6 @@
       "id": 31,
       "nombre": "Maribel Vega",
       "nucleo": "Familia Riaño Vega",
-      "tipo": "paga",
-      "nota": ""
-    },
-    {
-      "id": 33,
-      "nombre": "Nestor Guanumen",
-      "nucleo": "Nestor Guanumen",
       "tipo": "paga",
       "nota": ""
     },
@@ -1176,6 +1169,42 @@
       "fecha": "2026-11-05",
       "medio": "Transferencia",
       "comprobante": "Pago grupal Familia Riaño Vega"
+    },
+    {
+      "id": 1794427444559,
+      "personaId": 17,
+      "cuotaNum": 4,
+      "valor": 100000,
+      "fecha": "2026-11-09",
+      "medio": "Transferencia",
+      "comprobante": "Pago grupal Familia Lorena Riaño"
+    },
+    {
+      "id": 1794427444560,
+      "personaId": 18,
+      "cuotaNum": 4,
+      "valor": 100000,
+      "fecha": "2026-11-09",
+      "medio": "Transferencia",
+      "comprobante": "Pago grupal Familia Lorena Riaño"
+    },
+    {
+      "id": 1794427458210,
+      "personaId": 17,
+      "cuotaNum": 5,
+      "valor": 150000,
+      "fecha": "2026-11-09",
+      "medio": "Transferencia",
+      "comprobante": "Pago grupal Familia Lorena Riaño"
+    },
+    {
+      "id": 1794427458211,
+      "personaId": 18,
+      "cuotaNum": 5,
+      "valor": 150000,
+      "fecha": "2026-11-09",
+      "medio": "Transferencia",
+      "comprobante": "Pago grupal Familia Lorena Riaño"
     }
   ]
 }
