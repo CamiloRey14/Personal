@@ -440,6 +440,15 @@ tfoot td { background:#1A3A5C; color:rgba(255,255,255,0.9); padding:12px 14px; f
   font-weight:600; cursor:pointer; transition:background .15s; }
 .ecg-close-btn:hover { background:rgba(255,255,255,0.18); }
 
+
+/* GASTOS (admin) */
+.gx-kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:8px}
+.gx-kpi{background:var(--paper);border:1px solid var(--border);border-radius:10px;padding:10px 6px;text-align:center;min-width:0}
+.gx-lbl{font-size:0.58rem;text-transform:uppercase;letter-spacing:0.8px;color:#7A92A8;font-weight:700;margin-bottom:4px}
+.gx-val{font-size:0.95rem;font-weight:800;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.gx-proy{font-size:0.74rem;color:var(--steel);text-align:center;margin-bottom:16px;line-height:1.5}
+.gx-sub{font-size:0.7rem;color:#7A92A8;margin-top:1px}
+@media(max-width:560px){.gx-kpis{grid-template-columns:repeat(2,1fr)}}
 </style>
 </head>
 <body>
@@ -624,6 +633,7 @@ tfoot td { background:#1A3A5C; color:rgba(255,255,255,0.9); padding:12px 14px; f
           <button class="tab-btn" onclick="switchTab('tab-morosos',this)">Seguimiento</button>
           <button class="tab-btn" onclick="switchTab('tab-historial',this)">Historial</button>
           <button class="tab-btn" onclick="switchTab('tab-personas',this)">Personas</button>
+          <button class="tab-btn" onclick="switchTab('tab-gastos',this);renderGastos()">Gastos</button>
           <button class="tab-btn" onclick="switchTab('tab-config',this)">Config</button>
         </div>
 
@@ -729,6 +739,51 @@ tfoot td { background:#1A3A5C; color:rgba(255,255,255,0.9); padding:12px 14px; f
           </table></div>
         </div>
 
+        <!-- GASTOS -->
+        <div class="tab-pane" id="tab-gastos">
+          <div class="gx-kpis">
+            <div class="gx-kpi"><div class="gx-lbl">Recaudado</div><div class="gx-val" id="gx-rec" style="color:var(--green)">$0</div></div>
+            <div class="gx-kpi"><div class="gx-lbl">Gastado</div><div class="gx-val" id="gx-gas" style="color:var(--red)">$0</div></div>
+            <div class="gx-kpi"><div class="gx-lbl">Disponible</div><div class="gx-val" id="gx-disp">$0</div></div>
+            <div class="gx-kpi"><div class="gx-lbl">Por pagar</div><div class="gx-val" id="gx-pp" style="color:var(--amber)">$0</div></div>
+          </div>
+          <div class="gx-proy" id="gx-proy"></div>
+
+          <div class="form-row">
+            <div class="form-group"><label class="form-label">Fecha</label><input class="form-input" type="date" id="gx-fecha"></div>
+            <div class="form-group"><label class="form-label">Concepto</label><input class="form-input" id="gx-concepto" list="gx-conceptos" placeholder="Ej: Finca"></div>
+          </div>
+          <datalist id="gx-conceptos"><option value="Finca"><option value="Alimentaci&oacute;n"><option value="Transporte"><option value="Otros"></datalist>
+          <div class="form-row">
+            <div class="form-group"><label class="form-label">Valor pagado</label><input class="form-input" type="number" id="gx-valor" placeholder="Ej: 4000000" min="1"></div>
+            <div class="form-group"><label class="form-label">Proveedor</label><input class="form-input" id="gx-prov" placeholder="Ej: Anfitri&oacute;n Airbnb"></div>
+          </div>
+          <div class="form-row">
+            <div class="form-group"><label class="form-label">Total del servicio (opcional)</label><input class="form-input" type="number" id="gx-total" placeholder="Para saber cu&aacute;nto falta"></div>
+            <div class="form-group"><label class="form-label">Nota / soporte</label><input class="form-input" id="gx-nota" placeholder="Ej: Abono 50% &middot; comprobante"></div>
+          </div>
+          <div class="btn-row">
+            <button class="btn btn-green" id="gx-btn" onclick="guardarGasto()">Registrar gasto</button>
+            <button class="btn btn-ghost" onclick="limpiarGasto()">Limpiar</button>
+          </div>
+
+          <div style="margin-top:20px">
+            <label class="form-label">Resumen por concepto</label>
+            <div style="overflow-x:auto"><table class="hist-table">
+              <thead><tr><th>Concepto</th><th>Pagado</th><th>Total</th><th>Por pagar</th></tr></thead>
+              <tbody id="gx-resumen"></tbody>
+            </table></div>
+          </div>
+
+          <div style="margin-top:20px">
+            <label class="form-label"><span id="gx-count">0</span> gastos registrados</label>
+            <div style="overflow-x:auto"><table class="hist-table">
+              <thead><tr><th>Fecha</th><th>Concepto</th><th>Valor</th><th></th></tr></thead>
+              <tbody id="gx-body"></tbody>
+            </table></div>
+          </div>
+        </div>
+
         <!-- CONFIG -->
         <div class="tab-pane" id="tab-config">
           <p style="font-size:0.82rem;color:var(--steel);margin-bottom:14px;line-height:1.5">
@@ -822,10 +877,13 @@ const LS_PAGOS = "reyes2027_pagos";
 const LS_PERSONAS = "reyes2027_personas";
 const LS_PWD = "reyes2027_pwd";
 const LS_UPD = "reyes2027_lastupdate";
+const LS_GASTOS = "reyes2027_gastos";
 const VIAJE_FECHA = new Date("2027-01-09T00:00:00");
 
 let pagos = [];
 let personas = [];
+let gastos = (function(){ try{ const g = JSON.parse(localStorage.getItem("reyes2027_gastos")||"[]"); return Array.isArray(g)?g:[]; }catch(e){ return []; } })();
+let gxEditId = null;
 let authed = false;
 let currentView = "personas";
 
@@ -851,6 +909,7 @@ async function loadFromGitHub(){
     if(ghDate > lsDate){
       pagos = data.pagos;
       if(Array.isArray(data.personas) && data.personas.length) personas = data.personas;
+      if(Array.isArray(data.gastos)){ gastos = data.gastos; localStorage.setItem(LS_GASTOS, JSON.stringify(gastos)); }
       localStorage.setItem(LS_PAGOS, JSON.stringify(pagos));
       localStorage.setItem(LS_PERSONAS, JSON.stringify(personas));
       localStorage.setItem(LS_UPD, data.exportado);
@@ -1301,7 +1360,7 @@ function eliminarPersona(){
 
 // ═══════════════════════════════ EXPORT / IMPORT ═══════════════════════════════
 function exportarDatos(){
-  const data={exportado:new Date().toISOString(),version:"2.0",personas,pagos};
+  const data={exportado:new Date().toISOString(),version:"2.0",personas,pagos,gastos};
   const blob=new Blob([JSON.stringify(data,null,2)],{type:"application/json"});
   const a=document.createElement("a"); a.href=URL.createObjectURL(blob);
   a.download="datos.json"; a.click();
@@ -1318,6 +1377,7 @@ function importarDatos(event){
       if(!confirm(`¿Importar ${data.pagos.length} pagos y ${nPersonas} personas? Esto reemplazará los datos actuales.`)) return;
       pagos=data.pagos;
       if(Array.isArray(data.personas)) personas=data.personas;
+      if(Array.isArray(data.gastos)){ gastos=data.gastos; localStorage.setItem(LS_GASTOS, JSON.stringify(gastos)); }
       savePersonas(); savePagos();
       toast(`Importado`,"ok");
     }catch(err){ toast("Archivo inválido.","err"); }
@@ -1503,6 +1563,98 @@ function abrirECG(){
 
 function cerrarECG(){
   document.getElementById("ecg-overlay").classList.remove("open");
+}
+
+
+// ═══════════════════════════════ GASTOS ═══════════════════════════════
+function gxEsc(s){ return String(s==null?"":s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;"); }
+function totalGastado(){ return gastos.reduce(function(s,g){ return s+(g.valor||0); },0); }
+function saveGastos(){
+  localStorage.setItem(LS_GASTOS, JSON.stringify(gastos));
+  localStorage.setItem(LS_UPD, new Date().toISOString());
+  renderGastos();
+}
+function gxResumen(){
+  const map = {};
+  gastos.slice().sort(function(a,b){ return (a.fecha||"").localeCompare(b.fecha||"") || a.id-b.id; }).forEach(function(g){
+    const k = (g.concepto||"").trim().toLowerCase();
+    if(!map[k]) map[k] = {nombre:(g.concepto||"").trim(), pagado:0, total:0};
+    map[k].pagado += g.valor||0;
+    if(g.total && g.total>0) map[k].total = g.total;
+  });
+  return Object.keys(map).map(function(k){ return map[k]; });
+}
+function renderGastos(){
+  const body = document.getElementById("gx-body"); if(!body) return;
+  const fi = document.getElementById("gx-fecha");
+  if(fi && !fi.value) fi.value = new Date().toISOString().split("T")[0];
+
+  const rec = totalRecaudado(), gas = totalGastado(), disp = rec-gas;
+  const res = gxResumen();
+  const porPagar = res.reduce(function(s,r){ return s + (r.total>0 ? Math.max(r.total-r.pagado,0) : 0); },0);
+  document.getElementById("gx-rec").textContent = fmtCompact(rec);
+  document.getElementById("gx-gas").textContent = fmtCompact(gas);
+  const dEl = document.getElementById("gx-disp");
+  dEl.textContent = fmtCompact(disp); dEl.style.color = disp<0 ? "var(--red)" : "var(--navy)";
+  document.getElementById("gx-pp").textContent = fmtCompact(porPagar);
+  const proy = disp - porPagar;
+  document.getElementById("gx-proy").innerHTML = porPagar>0
+    ? "Saldo despu\u00e9s de pagar lo pendiente: <strong style=\"color:"+(proy<0?"var(--red)":"var(--green)")+"\">"+(proy<0?"-":"")+fmt(Math.abs(proy))+"</strong>"
+    : "Recaudado menos gastado: <strong>"+fmt(disp)+"</strong>";
+
+  document.getElementById("gx-resumen").innerHTML = res.length ? res.map(function(r){
+    const pend = r.total>0 ? fmt(Math.max(r.total-r.pagado,0)) : "\u2014";
+    return "<tr><td style=\"font-weight:600\">"+gxEsc(r.nombre)+"</td><td style=\"color:var(--green);font-weight:600\">"+fmt(r.pagado)+"</td><td>"+(r.total>0?fmt(r.total):"\u2014")+"</td><td style=\"color:var(--amber);font-weight:600\">"+pend+"</td></tr>";
+  }).join("") : "<tr><td colspan=\"4\" style=\"text-align:center;color:#9EB3C8;padding:14px\">Sin gastos a\u00fan</td></tr>";
+
+  document.getElementById("gx-count").textContent = gastos.length;
+  const sorted = gastos.slice().sort(function(a,b){ return (b.fecha||"").localeCompare(a.fecha||"") || b.id-a.id; });
+  body.innerHTML = sorted.length ? sorted.map(function(g){
+    const sub = [g.proveedor, g.nota].filter(Boolean).map(gxEsc).join(" \u00b7 ");
+    return "<tr><td>"+gxEsc(g.fecha)+"</td><td><span style=\"font-weight:600\">"+gxEsc(g.concepto)+"</span>"+(sub?"<div class=\"gx-sub\">"+sub+"</div>":"")+"</td>"
+      +"<td style=\"color:var(--red);font-weight:600\">"+fmt(g.valor)+"</td>"
+      +"<td style=\"white-space:nowrap\"><button class=\"edit-btn\" onclick=\"editarGasto("+g.id+")\" title=\"Editar\"><svg width=\"14\" height=\"14\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7\"/><path d=\"M18.5 2.5a2.12 2.12 0 0 1 3 3L12 15l-4 1 1-4Z\"/></svg></button>"
+      +"<button class=\"del-btn\" onclick=\"eliminarGasto("+g.id+")\" title=\"Eliminar\"><svg width=\"14\" height=\"14\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M3 6h18\"/><path d=\"M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2\"/><path d=\"M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6\"/></svg></button></td></tr>";
+  }).join("") : "<tr><td colspan=\"4\" style=\"text-align:center;color:#9EB3C8;padding:16px\">Sin gastos registrados a\u00fan</td></tr>";
+}
+function guardarGasto(){
+  const fecha = document.getElementById("gx-fecha").value;
+  const concepto = document.getElementById("gx-concepto").value.trim();
+  const proveedor = document.getElementById("gx-prov").value.trim();
+  const valor = parseInt(document.getElementById("gx-valor").value);
+  const total = parseInt(document.getElementById("gx-total").value) || 0;
+  const nota = document.getElementById("gx-nota").value.trim();
+  if(!fecha || !concepto || !valor || valor<=0){ toast("Completa fecha, concepto y valor.","err"); return; }
+  if(gxEditId){
+    const g = gastos.find(function(x){ return x.id===gxEditId; });
+    if(g) Object.assign(g,{fecha:fecha,concepto:concepto,proveedor:proveedor,valor:valor,total:total,nota:nota});
+  } else {
+    gastos.push({id:Date.now(),fecha:fecha,concepto:concepto,proveedor:proveedor,valor:valor,total:total,nota:nota});
+  }
+  limpiarGasto(); saveGastos(); toast("Gasto guardado","ok");
+}
+function limpiarGasto(){
+  gxEditId = null;
+  ["gx-concepto","gx-prov","gx-valor","gx-total","gx-nota"].forEach(function(id){ document.getElementById(id).value=""; });
+  document.getElementById("gx-fecha").value = new Date().toISOString().split("T")[0];
+  document.getElementById("gx-btn").textContent = "Registrar gasto";
+}
+function editarGasto(id){
+  const g = gastos.find(function(x){ return x.id===id; }); if(!g) return;
+  gxEditId = id;
+  document.getElementById("gx-fecha").value = g.fecha||"";
+  document.getElementById("gx-concepto").value = g.concepto||"";
+  document.getElementById("gx-prov").value = g.proveedor||"";
+  document.getElementById("gx-valor").value = g.valor||"";
+  document.getElementById("gx-total").value = g.total||"";
+  document.getElementById("gx-nota").value = g.nota||"";
+  document.getElementById("gx-btn").textContent = "Guardar cambios";
+  document.getElementById("gx-concepto").scrollIntoView({behavior:"smooth",block:"center"});
+}
+function eliminarGasto(id){
+  if(!confirm("\u00bfEliminar este gasto? No se puede deshacer.")) return;
+  gastos = gastos.filter(function(g){ return g.id!==id; });
+  saveGastos(); toast("Gasto eliminado","ok");
 }
 
 // ═══════════════════════════════ INIT ═══════════════════════════════
