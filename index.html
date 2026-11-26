@@ -449,6 +449,33 @@ tfoot td { background:#1A3A5C; color:rgba(255,255,255,0.9); padding:12px 14px; f
 .gx-proy{font-size:0.74rem;color:var(--steel);text-align:center;margin-bottom:16px;line-height:1.5}
 .gx-sub{font-size:0.7rem;color:#7A92A8;margin-top:1px}
 @media(max-width:560px){.gx-kpis{grid-template-columns:repeat(2,1fr)}}
+
+/* BALANCE DE GASTOS (publico, para screenshot) */
+.bgx-overlay{display:none;position:fixed;inset:0;background:rgba(10,20,35,0.75);z-index:400;overflow-y:auto;padding:20px 16px;backdrop-filter:blur(4px)}
+.bgx-overlay.open{display:block}
+.bgx-sec{padding:14px 14px 4px}
+.bgx-sec-t{font-size:0.62rem;text-transform:uppercase;letter-spacing:1.4px;font-weight:700;color:var(--steel);margin-bottom:8px;display:flex;align-items:center;gap:8px}
+.bgx-sec-t::after{content:'';flex:1;height:1px;background:var(--border)}
+.bgx-con{padding:9px 0;border-bottom:1px solid var(--border)}
+.bgx-con:last-child{border-bottom:none}
+.bgx-con-top{display:flex;justify-content:space-between;align-items:baseline;gap:8px}
+.bgx-con-name{font-size:0.84rem;font-weight:700;color:var(--ink)}
+.bgx-con-val{font-size:0.8rem;font-weight:700;color:var(--red);white-space:nowrap}
+.bgx-con-sub{font-size:0.68rem;color:var(--steel);margin-top:2px}
+.bgx-bar{height:4px;background:var(--border);border-radius:3px;overflow:hidden;margin-top:6px}
+.bgx-bar>div{height:100%;background:var(--navy);border-radius:3px}
+.bgx-hdr{display:grid;grid-template-columns:54px 1fr 84px;gap:6px;padding:7px 14px;background:var(--ink)}
+.bgx-hdr span{font-size:0.6rem;text-transform:uppercase;letter-spacing:0.8px;color:rgba(255,255,255,0.6);font-weight:700}
+.bgx-hdr span:last-child{text-align:right}
+.bgx-row{display:grid;grid-template-columns:54px 1fr 84px;gap:6px;padding:8px 14px;border-bottom:1px solid var(--border);align-items:start}
+.bgx-row:nth-child(even){background:var(--paper)}
+.bgx-row:last-child{border-bottom:none}
+.bgx-date{font-size:0.7rem;color:var(--steel);font-weight:600}
+.bgx-c{font-size:0.8rem;font-weight:600;color:var(--ink)}
+.bgx-c small{display:block;font-size:0.66rem;color:var(--steel);font-weight:400;margin-top:1px}
+.bgx-v{font-size:0.8rem;font-weight:700;color:var(--red);text-align:right}
+.bgx-proy{margin:10px 14px 12px;padding:9px 12px;background:var(--mist);border-radius:8px;font-size:0.74rem;color:var(--navy);text-align:center}
+.bgx-empty{padding:26px 14px;text-align:center;color:#9EB3C8;font-size:0.82rem}
 </style>
 </head>
 <body>
@@ -574,6 +601,7 @@ tfoot td { background:#1A3A5C; color:rgba(255,255,255,0.9); padding:12px 14px; f
       <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
       Estado de cuenta
     </button>
+      <button onclick="abrirBGX()" style="display:inline-flex;align-items:center;gap:8px;background:var(--navy);color:white;border:none;border-radius:9px;padding:10px 18px;font-family:inherit;font-size:0.82rem;font-weight:600;cursor:pointer;box-shadow:0 2px 8px rgba(15,30,46,0.2);transition:all .15s;margin-left:6px;"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="M18 17V9"/><path d="M13 17V5"/><path d="M8 17v-3"/></svg>Balance de gastos</button>
   </div>
 
   <div class="notice">
@@ -1657,6 +1685,53 @@ function eliminarGasto(id){
   saveGastos(); toast("Gasto eliminado","ok");
 }
 
+
+function abrirBGX(){
+  const hoy = new Date();
+  const rec = totalRecaudado(), gas = totalGastado(), disp = rec-gas;
+  const res = gxResumen();
+  const pp = res.reduce(function(s,r){ return s + (r.total>0 ? Math.max(r.total-r.pagado,0) : 0); },0);
+  const t = function(id,v){ document.getElementById(id).textContent = v; };
+  t("bgx-fecha", hoy.toLocaleDateString("es-CO",{year:"numeric",month:"long",day:"numeric"}));
+  t("bgx-footer", hoy.toLocaleDateString("es-CO",{year:"numeric",month:"short",day:"numeric"}));
+  t("bgx-rec", fmtCompact(rec)); t("bgx-gas", fmtCompact(gas)); t("bgx-pp", fmtCompact(pp));
+  t("bgx-disp", fmtCompact(disp));
+  document.getElementById("bgx-disp").style.color = disp<0 ? "#fca5a5" : "white";
+  const pe = rec>0 ? Math.min(gas/rec*100,100) : 0;
+  document.getElementById("bgx-bar").style.width = pe+"%";
+  t("bgx-l1", pe.toFixed(0)+"% ejecutado"); t("bgx-l2", Math.max(100-pe,0).toFixed(0)+"% disponible");
+
+  let h = "";
+  if(!gastos.length){
+    h = "<div class=\"bgx-empty\">A\u00fan no hay gastos registrados.</div>";
+  } else {
+    h += "<div class=\"bgx-sec\"><div class=\"bgx-sec-t\">Por concepto</div>";
+    res.forEach(function(r){
+      const pct = r.total>0 ? Math.min(r.pagado/r.total*100,100) : 100;
+      const sub = r.total>0
+        ? "Pagado "+fmt(r.pagado)+" de "+fmt(r.total)+(r.total-r.pagado>0 ? " \u00b7 Falta "+fmt(r.total-r.pagado) : " \u00b7 Completo")
+        : "Pagado "+fmt(r.pagado);
+      h += "<div class=\"bgx-con\"><div class=\"bgx-con-top\"><span class=\"bgx-con-name\">"+gxEsc(r.nombre)+"</span><span class=\"bgx-con-val\">"+fmt(r.pagado)+"</span></div>"
+         + "<div class=\"bgx-con-sub\">"+sub+"</div><div class=\"bgx-bar\"><div style=\"width:"+pct+"%\"></div></div></div>";
+    });
+    h += "</div>";
+    if(pp>0){
+      const proy = disp-pp;
+      h += "<div class=\"bgx-proy\">Saldo despu\u00e9s de pagar lo pendiente: <strong style=\"color:"+(proy<0?"var(--red)":"var(--green)")+"\">"+(proy<0?"-":"")+fmt(Math.abs(proy))+"</strong></div>";
+    }
+    h += "<div class=\"bgx-sec\" style=\"padding-bottom:0\"><div class=\"bgx-sec-t\">Detalle de gastos</div></div>";
+    h += "<div class=\"bgx-hdr\"><span>Fecha</span><span>Concepto</span><span>Valor</span></div>";
+    gastos.slice().sort(function(a,b){ return (b.fecha||"").localeCompare(a.fecha||"") || b.id-a.id; }).forEach(function(g){
+      const d = g.fecha ? new Date(g.fecha+"T12:00:00").toLocaleDateString("es-CO",{day:"numeric",month:"short"}) : "";
+      const sub = [g.proveedor, g.nota].filter(Boolean).map(gxEsc).join(" \u00b7 ");
+      h += "<div class=\"bgx-row\"><div class=\"bgx-date\">"+d+"</div><div class=\"bgx-c\">"+gxEsc(g.concepto)+(sub?"<small>"+sub+"</small>":"")+"</div><div class=\"bgx-v\">"+fmt(g.valor)+"</div></div>";
+    });
+  }
+  document.getElementById("bgx-body").innerHTML = h;
+  document.getElementById("bgx-overlay").classList.add("open");
+}
+function cerrarBGX(){ document.getElementById("bgx-overlay").classList.remove("open"); }
+
 // ═══════════════════════════════ INIT ═══════════════════════════════
 loadData();
 renderAll();
@@ -1752,6 +1827,38 @@ setInterval(loadFromGitHub, 5*60*1000); // Re-sync every 5 min
 
     <div class="ecg-hint">Toma un screenshot para compartir al grupo</div>
     <button class="ecg-close-btn" onclick="cerrarECG()">Cerrar</button>
+  </div>
+</div>
+
+
+<!-- BALANCE DE GASTOS -->
+<div class="bgx-overlay" id="bgx-overlay" onclick="if(event.target===this)cerrarBGX()">
+  <div class="ecg-wrap">
+    <div class="ecg-card">
+      <div class="ecg-header">
+        <div class="ecg-header-top">
+          <div>
+            <div class="ecg-title">Balance de gastos</div>
+            <div class="ecg-date" id="bgx-fecha">&mdash;</div>
+          </div>
+          <div class="ecg-logo">Reencuentro Familiar<br>Reyes 2027</div>
+        </div>
+        <div class="ecg-kpis">
+          <div class="ecg-kpi"><div class="ecg-kpi-val" id="bgx-rec">&mdash;</div><div class="ecg-kpi-lbl">Recaudado</div></div>
+          <div class="ecg-kpi"><div class="ecg-kpi-val" id="bgx-gas">&mdash;</div><div class="ecg-kpi-lbl">Gastado</div></div>
+          <div class="ecg-kpi"><div class="ecg-kpi-val" id="bgx-disp">&mdash;</div><div class="ecg-kpi-lbl">Disponible</div></div>
+          <div class="ecg-kpi"><div class="ecg-kpi-val" id="bgx-pp">&mdash;</div><div class="ecg-kpi-lbl">Por pagar</div></div>
+        </div>
+        <div class="ecg-progress">
+          <div class="ecg-progress-track"><div class="ecg-progress-fill" id="bgx-bar" style="width:0%"></div></div>
+          <div class="ecg-progress-label"><span id="bgx-l1">0% ejecutado</span><span id="bgx-l2">0% disponible</span></div>
+        </div>
+      </div>
+      <div id="bgx-body"></div>
+      <div class="ecg-footer-card"><span>Viaje Familiar Reyes 2027</span><span id="bgx-footer">&mdash;</span></div>
+    </div>
+    <div class="ecg-hint">Toma un screenshot para compartir al grupo</div>
+    <button class="ecg-close-btn" onclick="cerrarBGX()">Cerrar</button>
   </div>
 </div>
 
